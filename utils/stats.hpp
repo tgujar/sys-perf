@@ -12,4 +12,5 @@ template <typename T> class Stats {
         double std_dev();
         double variance();
         std::vector<T> get_vals();
+        void reset_vals();
 };
