@@ -3,9 +3,9 @@
 #include <thread>
 #include <unistd.h>
 #include <sched.h>
-#include "../utils/timer.hpp"
-#include "../utils/stats.hpp"
-#include "../utils/proc.hpp"
+#include "timer.hpp"
+#include "stats.hpp"
+#include "proc.hpp"
 
 
 using namespace std;
