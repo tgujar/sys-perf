@@ -36,7 +36,7 @@ double overhead() {
     for (int i = 0; i < pipes; i++) {
         close(p[i][0]);
     }
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iters; // return pipe overhead
+    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return pipe overhead
 }
 
 double total_pass() {
@@ -71,7 +71,7 @@ double total_pass() {
     while(wait(NULL) > 0); // wait for chain to finish
     auto end = chrono::steady_clock::now();
 
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iters; // return total time
+    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return total time
 }
 
 int main() {
