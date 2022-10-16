@@ -6,4 +6,4 @@ timer-check:
 	./${OUTDIR}/timer
 
 clean:
-	rm ${OUTDIR}/timer
+	rm -f ${OUTDIR}/timer
