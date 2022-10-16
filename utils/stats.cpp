@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include<algorithm>
 #include "stats.hpp"
 
 using namespace std;
@@ -39,6 +40,21 @@ template <typename T> double Stats<T>::variance() {
     return sqrt(sum / m_vals.size());
 }
 
+template <typename T> double Stats<T>::median() {
+    if (m_vals.size() == 0) {
+        return 0;
+    }
+    sort(m_vals.begin(), m_vals.end());
+    if (m_vals.size() % 2 != 0) {
+        return m_vals[m_vals.size() / 2];
+    }
+    int mid = m_vals.size() / 2;
+    return (m_vals[mid] + m_vals[mid - 1]) / 2;
+}
+
+template <typename T> vector<T> Stats<T>::get_vals() {
+    return m_vals;
+}
 
 // Explicit template instantiation
 template class Stats<double>;

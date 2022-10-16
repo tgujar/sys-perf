@@ -21,5 +21,5 @@ int main() {
     Stats<double> s(10);
     use_cores(vector<int> {0});
     s.run_func(cpu_freq);
-    cout << s.mean() << endl << s.std_dev() << endl << s.variance();
+    cout << s.mean() << endl << s.std_dev() << endl << s.variance() << endl << s.median();
 }
