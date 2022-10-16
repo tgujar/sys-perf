@@ -22,7 +22,7 @@ double readTimeOverheadInCycles() {
 }
 
 // Returns time in microseconds
-double readTimeOverheadInSeconds() {
+double readTimeOverheadInMicroSec() {
     Timer t;
     t.begin();
     for(int i = 0; i < N_ITERATIONS; i++);
@@ -39,6 +39,6 @@ int main() {
     cout << "Mean : " << s.mean() << " cycles" << endl;
 
     s.reset_vals();
-    s.run_func(readTimeOverheadInSeconds);
+    s.run_func(readTimeOverheadInMicroSec);
     cout << "Mean : " << s.mean() << " us" << endl;
 }
