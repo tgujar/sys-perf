@@ -1,6 +1,7 @@
 #include <vector>
 #include <cmath>
 #include<algorithm>
+#include <cinttypes>
 #include "stats.hpp"
 
 using namespace std;
@@ -56,6 +57,11 @@ template <typename T> vector<T> Stats<T>::get_vals() {
     return m_vals;
 }
 
+template <typename T> void Stats<T>::reset_vals() {
+    m_vals.clear();
+}
+
 // Explicit template instantiation
 template class Stats<double>;
 template class Stats<int>;
+template class Stats<uint64_t>;
