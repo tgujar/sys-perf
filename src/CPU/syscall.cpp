@@ -14,21 +14,23 @@ using namespace std;
 
 double sys_call_time_chrono() {
     auto start = chrono::steady_clock::now();
-    for(ssize_t i = 100000; i > 0; i--) {
+    const int iter = 100000;
+    for(ssize_t i = iter; i > 0; i--) {
         getpid();
     }
     auto end = chrono::steady_clock::now();
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / 100000;
+    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iter;
 }
 
 double sys_call_time_rtdsc() {
     Timer t;
     t.begin();
-    for(ssize_t i = 100000; i > 0; i--) {
+    const int iter = 100000;
+    for(ssize_t i = iter; i > 0; i--) {
         getpid();
     }
     t.end();
-    return t.time_diff_micro() / 100000;
+    return t.time_diff_micro() / iter;
 }
 
 
