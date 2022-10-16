@@ -64,4 +64,3 @@ template <typename T> void Stats<T>::reset_vals() {
 // Explicit template instantiation
 template class Stats<double>;
 template class Stats<int>;
-template class Stats<uint64_t>;
