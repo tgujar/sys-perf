@@ -1,4 +1,5 @@
 #pragma once
+#ifdef CPU_FREQ
 #include <cinttypes>
 
 class Timer {
@@ -22,4 +23,6 @@ class Timer {
         uint64_t get_start();
         uint64_t get_end();
         uint64_t diff();
+        double time_diff_micro();
 };
+#endif
