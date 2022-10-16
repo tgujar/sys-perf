@@ -56,7 +56,7 @@ double total_pass() {
             exit(1);
         } else if (chid == 0) {
             char buf;
-            use_cores(vector<int> {0});
+            use_cores(vector<int> {1});
             vector<int> f(footprint_vector_len, 1);
             for (int j = 0; j < iters; j++) {
                 read(p[(i - 1 + pipes) % pipes][0], &buf, 1); // first iteration waits for parent to signal
