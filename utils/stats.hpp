@@ -7,6 +7,7 @@ template <typename T> class Stats {
     public:
         Stats(int runs);
         void run_func(T(*func)());
+        void run_func(T(*func)(bool), bool isUnitCycle);
         double mean();
         double median();
         double std_dev();

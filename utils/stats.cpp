@@ -13,6 +13,12 @@ template <typename T> void Stats<T>::run_func( T(*func)()) {
     }
 }
 
+template <typename T> void Stats<T>::run_func( T(*func)(bool), bool isUnitCycle) {
+    for (int i = 0; i < m_runs; i++) {
+        m_vals.push_back(func(isUnitCycle));
+    }
+}
+
 template <typename T> double Stats<T>::mean() {
     if (m_vals.size() == 0) {
         return 0;
