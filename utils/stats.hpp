@@ -8,6 +8,8 @@ template <typename T> class Stats {
         Stats(int runs);
         void run_func(T(*func)());
         double mean();
+        double median();
         double std_dev();
         double variance();
+        std::vector<T> get_vals();
 };

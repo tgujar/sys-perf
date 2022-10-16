@@ -3,9 +3,9 @@
 #include <thread>
 #include <unistd.h>
 #include <sched.h>
-#include "../utils/timer.hpp"
-#include "../utils/stats.hpp"
-#include "../utils/proc.hpp"
+#include "timer.hpp"
+#include "stats.hpp"
+#include "proc.hpp"
 
 
 using namespace std;
@@ -21,5 +21,5 @@ int main() {
     Stats<double> s(10);
     use_cores(vector<int> {0});
     s.run_func(cpu_freq);
-    cout << s.mean() << endl << s.std_dev() << endl << s.variance();
+    cout << s.mean() << endl << s.std_dev() << endl << s.variance() << endl << s.median();
 }
