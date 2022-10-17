@@ -13,8 +13,8 @@ using namespace std;
 // getpid() cache has been deprecated, see https://man7.org/linux/man-pages/man2/getpid.2.html
 
 double sys_call_time_chrono() {
-    auto start = chrono::steady_clock::now();
     const int iter = 100000;
+    auto start = chrono::steady_clock::now();
     for(ssize_t i = iter; i > 0; i--) {
         getpid();
     }
@@ -23,9 +23,9 @@ double sys_call_time_chrono() {
 }
 
 double sys_call_time_rtdsc() {
+    const int iter = 100000;
     Timer t;
     t.begin();
-    const int iter = 100000;
     for(ssize_t i = iter; i > 0; i--) {
         getpid();
     }
@@ -40,6 +40,6 @@ int main() {
     use_cores(vector<int> {0});
     s.run_func(sys_call_time_chrono);
     cout << "Mean (chrono): "<< s.mean() << " us"<< endl;
-    t.run_func(sys_call_time_chrono);
+    t.run_func(sys_call_time_rtdsc);
     cout << "Mean (rtdsc): "<< t.mean() << " us" << endl;
 }

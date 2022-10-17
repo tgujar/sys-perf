@@ -24,20 +24,20 @@ double overhead() {
             throw std::runtime_error("cant create pipe");
         }
     }
-
-    auto start = chrono::steady_clock::now();
+    Timer t;
+    t.begin();
     for (size_t i = iters; i > 0; i--) {
         for (int i = 0; i < pipes; i++) {
             write(p[i][1], &buf, 1); // write to pipe
             read(p[i][0], &buf, 1); // read from pipe
         }
     }
-    auto end = chrono::steady_clock::now();
+    t.end();
     for (int i = 0; i < pipes; i++) {
          close(p[i][0]);
          close(p[i][1]);
     }
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return pipe overhead
+    return t.time_diff_micro()  / (iters * pipes); // return pipe overhead
 }
 
 double total_pass() {
@@ -67,15 +67,16 @@ double total_pass() {
         }
     }
     
-    auto start = chrono::steady_clock::now();
+    Timer t;
+    t.begin();
     write(p[0][1], &buf, 1); // start chain from parent
     while(wait(NULL) > 0); // wait for chain to finish
-    auto end = chrono::steady_clock::now();
+    t.end();
     for (int i = 0; i < pipes; i++) {
          close(p[i][0]);
          close(p[i][1]);
     }
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return total time
+    return t.time_diff_micro() / (iters * pipes); // return total time
 }
 
 int main() {
