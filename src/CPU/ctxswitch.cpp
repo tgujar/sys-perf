@@ -34,7 +34,8 @@ double overhead() {
     }
     auto end = chrono::steady_clock::now();
     for (int i = 0; i < pipes; i++) {
-        close(p[i][0]);
+         close(p[i][0]);
+         close(p[i][1]);
     }
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return pipe overhead
 }
@@ -56,7 +57,7 @@ double total_pass() {
             exit(1);
         } else if (chid == 0) {
             char buf;
-            use_cores(vector<int> {0});
+            use_cores(vector<int> {1});
             vector<int> f(footprint_vector_len, 1);
             for (int j = 0; j < iters; j++) {
                 read(p[(i - 1 + pipes) % pipes][0], &buf, 1); // first iteration waits for parent to signal
@@ -70,7 +71,10 @@ double total_pass() {
     write(p[0][1], &buf, 1); // start chain from parent
     while(wait(NULL) > 0); // wait for chain to finish
     auto end = chrono::steady_clock::now();
-
+    for (int i = 0; i < pipes; i++) {
+         close(p[i][0]);
+         close(p[i][1]);
+    }
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return total time
 }
 

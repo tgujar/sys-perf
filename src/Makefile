@@ -8,6 +8,9 @@ syscall:
 ctxswitch:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ctxswitch CPU/ctxswitch.cpp ${INCL_CPP}
 	./${OUTDIR}/ctxswitch
+ctxswitchkernel:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ctxswitchkernel CPU/ctxswitchkernel.cpp ${INCL_CPP}
+	./${OUTDIR}/ctxswitchkernel
 
 readTimeOverhead:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/readTimeOverhead CPU/readTimeOverhead.cpp ${INCL_CPP}
@@ -23,8 +26,4 @@ procedureCallOverhead:
 
 
 clean:
-	rm -f ./${OUTDIR}/syscall
-	rm -f ./${OUTDIR}/ctxswitch
-	rm -f ./${OUTDIR}/readTimeOverhead
-	rm -f ./${OUTDIR}/readTimeOverheadLoop
-	rm -f ./${OUTDIR}/procedureCallOverhead
+	rm -f ./${OUTDIR}/*
