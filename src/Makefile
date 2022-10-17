@@ -24,6 +24,13 @@ procedureCallOverhead:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/procedureCallOverhead CPU/procedureCallOverhead.cpp ${INCL_CPP}
 	./${OUTDIR}/procedureCallOverhead
 
+createProcess:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createProcess CPU/createProcess.cpp ${INCL_CPP}
+	./${OUTDIR}/createProcess
+
+createThread:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
+	./${OUTDIR}/createThread
 
 clean:
 	rm -f ./${OUTDIR}/*
