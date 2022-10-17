@@ -34,7 +34,8 @@ double overhead() {
     }
     auto end = chrono::steady_clock::now();
     for (int i = 0; i < pipes; i++) {
-        close(p[i][0]);
+         close(p[i][0]);
+         close(p[i][1]);
     }
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return pipe overhead
 }
@@ -70,7 +71,10 @@ double total_pass() {
     write(p[0][1], &buf, 1); // start chain from parent
     while(wait(NULL) > 0); // wait for chain to finish
     auto end = chrono::steady_clock::now();
-
+    for (int i = 0; i < pipes; i++) {
+         close(p[i][0]);
+         close(p[i][1]);
+    }
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / (iters * pipes); // return total time
 }
 
