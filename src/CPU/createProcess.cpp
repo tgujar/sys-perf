@@ -16,13 +16,13 @@ using namespace std;
 
 double create_process_time_chrono_innerloop() {
     auto start = chrono::steady_clock::now();
-    const int iter = 100000;
+    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
         pid_t chid = fork();
         if (chid == -1) {
-            exit(1);
+            continue;
         } else if (chid == 0) {//child
-            return 0;
+            exit(1);
         }
     }
     auto end = chrono::steady_clock::now();
@@ -32,14 +32,14 @@ double create_process_time_chrono_innerloop() {
 double create_process_time_chrono_outerloop() {
     double total = 0;
     
-    const int iter = 100000;
+    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
         auto start = chrono::steady_clock::now();
         pid_t chid = fork();
         if (chid == -1) {
-            exit(1);
+            continue;
         } else if (chid == 0) {//child
-            return 0;
+            exit(1);
         }
         else{
             auto end = chrono::steady_clock::now();
@@ -54,13 +54,13 @@ double create_process_time_chrono_outerloop() {
 double create_process_time_rtdsc_innerloop() {
     Timer t;
     t.begin();
-    const int iter = 100000;
+    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
         pid_t chid = fork();
         if (chid == -1) {
-            exit(1);
+            continue;
         } else if (chid == 0) {//child
-            return 0;
+            exit(1);
         }
     }
     t.end();
@@ -68,16 +68,16 @@ double create_process_time_rtdsc_innerloop() {
 }
 
 double create_process_time_rtdsc_outerloop() {
-    const int iter = 100000;
+    const int iter = 1000;
     double total = 0;
     for(ssize_t i = iter; i > 0; i--) {
         Timer t;
         t.begin();
         pid_t chid = fork();
         if (chid == -1) {
-            exit(1);
+            continue;
         } else if (chid == 0) {//child
-            return 0;
+            exit(1);
         }
         else{
             t.end();
