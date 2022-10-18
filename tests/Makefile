@@ -6,7 +6,7 @@ timer-check:
 	./${OUTDIR}/timer
 
 test-csv:
-	g++ -o ${OUTDIR}/csv test_csv.cpp ${INCL_CPP}
+	g++ -I ../utils -o ${OUTDIR}/csv test_csv.cpp ${INCL_CPP}
 	./${OUTDIR}/csv
 
 clean:

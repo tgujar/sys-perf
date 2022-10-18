@@ -5,16 +5,19 @@
 #include <sys/wait.h>
 #include <sched.h>
 #include <stdexcept>
+#include <malloc.h>
 #include "timer.hpp"
 #include "stats.hpp"
 #include "proc.hpp"
+#include "csvfile.h"
 
-const int pipes = 10; // number of pipes or processes in ring
-const int footprint_vector_len = 30000; // cache footprint
+int pipes; // number of pipes or processes in ring
+int footprint_arr_len; // cache footprint
+const int iters = 100;
+const int max_footprint = 589824/4;
 
 using namespace std;
 double overhead() {
-    const int iters = 100;
     int p[pipes][2];
     char buf = 'm';
 
@@ -27,13 +30,14 @@ double overhead() {
     
     Timer t;
     t.begin();
-    int arr[footprint_vector_len] = {0};
+    //int *arr = (int*) memalign(4096, footprint_arr_len*4);
+    int arr[max_footprint];
     int temp = 0;
     for (size_t i = iters; i > 0; i--) {
         for (int i = 0; i < pipes; i++) {
             write(p[i][1], &buf, 1); // write to pipe
-            for (auto &k:arr) {
-                temp += k;
+            for (int offset = 0; offset < footprint_arr_len; offset++){
+                *(arr + offset) = 1;
             }
             read(p[i][0], &buf, 1); // read from pipe
         }
@@ -47,7 +51,7 @@ double overhead() {
 }
 
 double total_pass() {
-    const int iters = 100;
+
     int p[pipes][2];
     
     for (int i = 0; i < pipes; i++) {
@@ -64,12 +68,13 @@ double total_pass() {
         } else if (chid == 0) {
             char buf;
             use_cores(vector<int> {1});
-            int arr[footprint_vector_len] = {0};
+            //int *arr = (int*) memalign(4096, footprint_arr_len*4);
+            int arr[max_footprint];
             int temp = 0;
             for (int j = 0; j < iters; j++) {
                 read(p[(i - 1 + pipes) % pipes][0], &buf, 1); // first iteration waits for parent to signal
-                for (auto &k:arr) {
-                    temp += k;
+                for (int offset = 0; offset < footprint_arr_len; offset++){
+                    *(arr + offset) = 1;
                 }
                 write(p[i % pipes][1], &buf, 1);
             }
@@ -90,11 +95,20 @@ double total_pass() {
 }
 
 int main() {
-    Stats<double> s(10), t(10);
+    vector<int> pipe_size {2, 4, 8, 16, 32};
+    vector<int> footprint_size {0, 2048/4, 4096/4, 8192/4, 16384/4, 32768/4, 65536/4, 131072/4, 589824/4}; // {0B, 2KB, 4KB, 8KB, 16KB, 32KB, 64KB, 128KB}
+    csvfile out("../data/ctxswitch.csv");
+    out << "No. of pipes" << "Footprint size(KB)" << "Mean overhead (us)" << "Mean total (us)" << "Mean ctx switch (us)" << "Std dev (us)" << endrow; 
     use_cores(vector<int> {0});
-    s.run_func(overhead);
-    t.run_func(total_pass);
-    cout << "Mean overhead: " << s.mean() << " us" << endl;
-    cout << "Mean total: " << t.mean() << " us" << endl;
-    cout << "Mean ctx switch: " << t.mean() - s.mean() << endl;
+
+    for (auto &tp: pipe_size) {
+        pipes = tp;
+        for(auto &tf: footprint_size) {
+            footprint_arr_len = tf;
+            Stats<double> s(10), t(10);
+            s.run_func(overhead);
+            t.run_func(total_pass);
+            out << pipes << (footprint_arr_len * 4) / 1024 << s.mean() << t.mean() << t.mean() - s.mean() << t.std_dev() << endrow;
+        }
+    }
 }

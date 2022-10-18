@@ -1,4 +1,4 @@
-INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp ../utils/csvfile.h
+INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp
 OUTDIR = ../build
 
 syscall:
@@ -8,6 +8,7 @@ syscall:
 ctxswitch:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ctxswitch CPU/ctxswitch.cpp ${INCL_CPP}
 	./${OUTDIR}/ctxswitch
+
 ctxswitchkernel:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ctxswitchkernel CPU/ctxswitchkernel.cpp ${INCL_CPP}
 	./${OUTDIR}/ctxswitchkernel

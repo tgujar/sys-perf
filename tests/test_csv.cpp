@@ -4,7 +4,7 @@ int main()
 {
     try
     {
-        csvfile out("../data/ctxswitchout.csv");
+        csvfile out("test_csv.csv");
         out << "X" << "VALUE" << endrow;
         int i = 1;
         out << i++ << "String value" << endrow;
