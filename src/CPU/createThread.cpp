@@ -21,7 +21,7 @@ void *routine(void *ptr) {
 double create_thread_time_chrono_innerloop() {
     int p;
     pthread_t tid;
-    const int iter = 1000;
+    const int iter = 10000;
     auto start = chrono::steady_clock::now();
     for(ssize_t i = iter; i > 0; i--) {
         pthread_create(&tid, NULL, routine, (void *) p);
@@ -32,7 +32,7 @@ double create_thread_time_chrono_innerloop() {
 
 double create_thread_time_chrono_outerloop() {
     double total = 0;
-    const int iter = 1000;
+    const int iter = 10000;
     int p;
     pthread_t tid;
     for(ssize_t i = iter; i > 0; i--) {
@@ -50,7 +50,7 @@ double create_thread_time_rtdsc_innerloop() {
     int p;
     pthread_t tid;
     t.begin();
-    const int iter = 1000;
+    const int iter = 10000;
     for(ssize_t i = iter; i > 0; i--) {
         pthread_create(&tid, NULL, routine, (void *) p);
     }
@@ -59,7 +59,7 @@ double create_thread_time_rtdsc_innerloop() {
 }
 
 double create_thread_time_rtdsc_outerloop() {
-    const int iter = 1000;
+    const int iter = 10000;
     double total = 0;
     for(ssize_t i = iter; i > 0; i--) {
         int p;
