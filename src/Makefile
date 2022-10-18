@@ -1,4 +1,4 @@
-INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp
+INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp ../utils/csvfile.h
 OUTDIR = ../build
 
 syscall:
