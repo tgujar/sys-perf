@@ -10,7 +10,7 @@
 using namespace std;
 
 const int N_RUNS = 10;
-const int N_ITERATIONS = 1000;
+const int N_ITERATIONS = 10000;
 
 // noinline prevents the compiler to do optimization like inlining the function
 void __attribute__ ((noinline)) noParam() {}
@@ -146,70 +146,118 @@ int main() {
     s.run_func(noParamsCall, true);
     cout << "No Param call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(noParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // One parameter function call
     s.reset_vals();
     s.run_func(oneParamCall, true);
     cout << "One Param call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(oneParamCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Two parameters function call
     s.reset_vals();
     s.run_func(twoParamsCall, true);
     cout << "Two Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(twoParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Three parameters function call
     s.reset_vals();
     s.run_func(threeParamsCall, true);
     cout << "Three Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(threeParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Four parameters function call
     s.reset_vals();
     s.run_func(fourParamsCall, true);
     cout << "Four Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(fourParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Five parameter function call
     s.reset_vals();
     s.run_func(fiveParamsCall, true);
     cout << "Five Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(fiveParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Six parameter function call
     s.reset_vals();
     s.run_func(sixParamsCall, true);
     cout << "Six Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(sixParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 
     // Seven parameter function call
     s.reset_vals();
     s.run_func(sevenParamsCall, true);
     cout << "Seven Params call\n";
     cout << "Mean : " << s.mean() << " cycles" << endl;
+    cout << "Variance : " << s.variance() << " cycles" << endl;
+    cout << "Median : " << s.median() << " cycles" << endl;
+    cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(sevenParamsCall, false);
     cout << "Mean : " << s.mean() << " us" << endl;
+    cout << "Variance : " << s.variance() << " us" << endl;
+    cout << "Median : " << s.median() << " us" << endl;
+    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
 }
