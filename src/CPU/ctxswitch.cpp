@@ -10,7 +10,7 @@
 #include "proc.hpp"
 
 const int pipes = 10; // number of pipes or processes in ring
-const int footprint_vector_len = 1000000; // cache footprint
+const int footprint_vector_len = 30000; // cache footprint
 
 using namespace std;
 double overhead() {
@@ -24,11 +24,17 @@ double overhead() {
             throw std::runtime_error("cant create pipe");
         }
     }
+    
     Timer t;
     t.begin();
+    int arr[footprint_vector_len] = {0};
+    int temp = 0;
     for (size_t i = iters; i > 0; i--) {
         for (int i = 0; i < pipes; i++) {
             write(p[i][1], &buf, 1); // write to pipe
+            for (auto &k:arr) {
+                temp += k;
+            }
             read(p[i][0], &buf, 1); // read from pipe
         }
     }
@@ -58,9 +64,13 @@ double total_pass() {
         } else if (chid == 0) {
             char buf;
             use_cores(vector<int> {1});
-            vector<int> f(footprint_vector_len, 1);
+            int arr[footprint_vector_len] = {0};
+            int temp = 0;
             for (int j = 0; j < iters; j++) {
                 read(p[(i - 1 + pipes) % pipes][0], &buf, 1); // first iteration waits for parent to signal
+                for (auto &k:arr) {
+                    temp += k;
+                }
                 write(p[i % pipes][1], &buf, 1);
             }
             exit(0);

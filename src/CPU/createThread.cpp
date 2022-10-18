@@ -76,7 +76,7 @@ double create_thread_time_rtdsc_outerloop() {
 
 
 int main() {
-    Stats<double> s(10), t(10);
+    Stats<double> s(100), t(100);
     use_cores(vector<int> {0});
     s.run_func(create_thread_time_chrono_innerloop);
     cout << "Mean (chrono): "<< s.mean() << " us"<< endl;

@@ -11,8 +11,8 @@
 #include "proc.hpp"
 
 const int pipes = 20; // number of pipes or processes in ring
-const int footprint_vector_len = 100000; // cache footprint
-const int iters = 100;
+const int footprint_vector_len = 1000; // cache footprint
+const int iters = 1000;
 
 using namespace std;
 
@@ -21,16 +21,20 @@ void *overhead_routine(void *ptr) {
     use_cores(vector<int> {1});
     int (*p)[2] = (int (*)[2]) ptr;
     char buf = 'm';
+    int arr[footprint_vector_len] = {0};
+    int temp = 0;
+
     for (size_t i = iters; i > 0; i--) {
         for (int i = 0; i < pipes; i++) {
             read(p[i][0], &buf, 1); // read from pipe
+            for (auto &k:arr) { // cache flush
+                    temp += k;
+            }
             write(p[(i + 1) % pipes][1], &buf, 1); // write to pipe
         }
     }
     return NULL;
 }
-
-
 
 double overhead() {
     
@@ -63,10 +67,15 @@ void *kern_thread_ring_routine(void *ptr) {
     // create pipes
     use_cores(vector<int> {1});
     int *p = (int *) ptr;
-    int f[footprint_vector_len] = {1};
     char buf = 'm';
+    int arr[footprint_vector_len] = {0};
+    int temp = 0;
+
     for (size_t i = iters; i > 0; i--) {
         read(p[0], &buf, 1); // read from pipe
+        for (auto &k:arr) { // cache flush
+            temp += k;
+        }
         write(p[1], &buf, 1); // write to pipe
     }
     delete p; // avoid mem leak :)

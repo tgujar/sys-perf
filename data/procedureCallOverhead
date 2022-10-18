@@ -1,0 +1,79 @@
+No Param call
+Mean : 34.6133 cycles
+Variance : 1.64727 cycles
+Median : 34.1569 cycles
+Std dev : 1.28346 cycles
+Mean : 12.8274 ns
+Variance : 0.666934 ns
+Median : 12.6451 ns
+Std dev : 0.816661 ns
+
+One Param call
+Mean : 34.4754 cycles
+Variance : 0.280825 cycles
+Median : 34.4645 cycles
+Std dev : 0.529929 cycles
+Mean : 12.7327 ns
+Variance : 0.0608159 ns
+Median : 12.721 ns
+Std dev : 0.246609 ns
+
+Two Params call
+Mean : 35.3577 cycles
+Variance : 0.238603 cycles
+Median : 35.4375 cycles
+Std dev : 0.48847 cycles
+Mean : 12.9401 ns
+Variance : 0.275053 ns
+Median : 12.8901 ns
+Std dev : 0.524455 ns
+
+Three Params call
+Mean : 35.2236 cycles
+Variance : 0.658347 cycles
+Median : 35.0476 cycles
+Std dev : 0.811386 cycles
+Mean : 12.9884 ns
+Variance : 0.061611 ns
+Median : 12.9702 ns
+Std dev : 0.248216 ns
+
+Four Params call
+Mean : 35.7682 cycles
+Variance : 0.295982 cycles
+Median : 35.644 cycles
+Std dev : 0.544042 cycles
+Mean : 13.2012 ns
+Variance : 0.0498683 ns
+Median : 13.1959 ns
+Std dev : 0.223312 ns
+
+Five Params call
+Mean : 36.1364 cycles
+Variance : 0.709418 cycles
+Median : 36.0282 cycles
+Std dev : 0.84227 cycles
+Mean : 13.2081 ns
+Variance : 0.0694563 ns
+Median : 13.208 ns
+Std dev : 0.263546 ns
+
+Six Params call
+Mean : 37.2225 cycles
+Variance : 0.152817 cycles
+Median : 37.2238 cycles
+Std dev : 0.390918 cycles
+Mean : 13.6584 ns
+Variance : 0.0415367 ns
+Median : 13.6527 ns
+Std dev : 0.203806 ns
+
+Seven Params call
+Mean : 37.6147 cycles
+Variance : 0.223194 cycles
+Median : 37.5964 cycles
+Std dev : 0.472434 cycles
+Mean : 13.8293 ns
+Variance : 0.223063 ns
+Median : 13.8027 ns
+Std dev : 0.472295 ns

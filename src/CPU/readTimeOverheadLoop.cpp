@@ -9,8 +9,8 @@
 #include "proc.hpp"
 using namespace std;
 
-const int N_RUNS = 10;
-const int N_ITERATIONS = 10000;
+const int N_RUNS = 100;
+const int N_ITERATIONS = 10000000;
 
 // Returns number of cycles
 double readTimeOverheadInCycles() {
@@ -22,12 +22,12 @@ double readTimeOverheadInCycles() {
 }
 
 // Returns time in microseconds
-double readTimeOverheadInMicroSec() {
+double readTimeOverheadInNanoSec() {
     Timer t;
     t.begin();
     for(int i = 0; i < N_ITERATIONS; i++);
     t.end();
-    return t.time_diff_micro() / N_ITERATIONS;
+    return t.time_diff_nano() / N_ITERATIONS;
 }
 
 
@@ -42,9 +42,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
 
     s.reset_vals();
-    s.run_func(readTimeOverheadInMicroSec);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us" << endl;
+    // measured in nanosec to avoid loss in precision
+    s.run_func(readTimeOverheadInNanoSec); 
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns" << endl;
 }

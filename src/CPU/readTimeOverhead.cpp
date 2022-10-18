@@ -10,7 +10,7 @@
 #include "proc.hpp"
 using namespace std;
 
-const int N_RUNS = 10;
+const int N_RUNS = 100;
 const int N_ITERATIONS = 10000;
 
 // Returns number of cycles consumed in reading RTDSC
@@ -32,7 +32,7 @@ double readTimeOverheadInMicroSec() {
     for (int i = 0; i < N_ITERATIONS; i++) {
         t.begin();
         t.end();
-        time += t.time_diff_micro();
+        time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -50,8 +50,8 @@ int main() {
     
     s.reset_vals();
     s.run_func(readTimeOverheadInMicroSec);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns" << endl;
 }
