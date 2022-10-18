@@ -94,6 +94,8 @@ int main() {
     use_cores(vector<int> {0});
     s.run_func(create_process_time_chrono_innerloop);
     cout << "Mean (chrono): "<< s.mean() << " us"<< endl;
+    cout << "Standard deviation (chrono): "<< s.std_dev() << " us"<< endl;
     t.run_func(create_process_time_rtdsc_innerloop);
     cout << "Mean (rtdsc): "<< t.mean() << " us" << endl;
+    cout << "Standard deviation (rtdsc): "<< t.std_dev() << " us"<< endl;
 }
