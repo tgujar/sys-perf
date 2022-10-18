@@ -24,5 +24,6 @@ class Timer {
         uint64_t get_end();
         uint64_t diff();
         double time_diff_micro();
+        double time_diff_nano();
 };
 #endif

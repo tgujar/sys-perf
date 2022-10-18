@@ -1,0 +1,4 @@
+Mean (chrono): 545.838 ns
+Std dev (chrono): 3.30294 ns
+Mean (rtdsc): 584.81 ns
+Std dev (rtdsc): 1.13142 ns

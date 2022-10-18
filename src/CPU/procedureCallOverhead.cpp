@@ -9,7 +9,7 @@
 #include "proc.hpp"
 using namespace std;
 
-const int N_RUNS = 10;
+const int N_RUNS = 100;
 const int N_ITERATIONS = 10000;
 
 // noinline prevents the compiler to do optimization like inlining the function
@@ -41,7 +41,7 @@ double noParamsCall(bool isUnitCycle) {
         noParam();
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -54,7 +54,7 @@ double oneParamCall(bool isUnitCycle) {
         oneParam(10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -67,7 +67,7 @@ double twoParamsCall(bool isUnitCycle) {
         twoParams(10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -80,7 +80,7 @@ double threeParamsCall(bool isUnitCycle) {
         threeParams(10, 10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -93,7 +93,7 @@ double fourParamsCall(bool isUnitCycle) {
         fourParams(10, 10, 10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -106,7 +106,7 @@ double fiveParamsCall(bool isUnitCycle) {
         fiveParams(10, 10, 10, 10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -119,7 +119,7 @@ double sixParamsCall(bool isUnitCycle) {
         sixParams(10, 10, 10, 10, 10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -132,7 +132,7 @@ double sevenParamsCall(bool isUnitCycle) {
         sevenParams(10, 10, 10, 10, 10, 10, 10);
         t.end();
         if (isUnitCycle) time += t.diff();
-        else time += t.time_diff_micro();
+        else time += t.time_diff_nano();
     }
     return time / N_ITERATIONS;
 }
@@ -151,10 +151,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(noParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // One parameter function call
     s.reset_vals();
@@ -166,10 +166,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(oneParamCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Two parameters function call
     s.reset_vals();
@@ -181,10 +181,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(twoParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Three parameters function call
     s.reset_vals();
@@ -196,10 +196,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(threeParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Four parameters function call
     s.reset_vals();
@@ -211,10 +211,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(fourParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Five parameter function call
     s.reset_vals();
@@ -226,10 +226,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(fiveParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Six parameter function call
     s.reset_vals();
@@ -241,10 +241,10 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(sixParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 
     // Seven parameter function call
     s.reset_vals();
@@ -256,8 +256,8 @@ int main() {
     cout << "Std dev : " << s.std_dev() << " cycles" << endl;
     s.reset_vals();
     s.run_func(sevenParamsCall, false);
-    cout << "Mean : " << s.mean() << " us" << endl;
-    cout << "Variance : " << s.variance() << " us" << endl;
-    cout << "Median : " << s.median() << " us" << endl;
-    cout << "Std dev : " << s.std_dev() << " us\n" << endl;
+    cout << "Mean : " << s.mean() << " ns" << endl;
+    cout << "Variance : " << s.variance() << " ns" << endl;
+    cout << "Median : " << s.median() << " ns" << endl;
+    cout << "Std dev : " << s.std_dev() << " ns\n" << endl;
 }

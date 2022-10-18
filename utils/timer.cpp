@@ -15,4 +15,7 @@ uint64_t Timer::diff() {
 double Timer::time_diff_micro() {
     return double(diff()) / CPU_FREQ;
 }
+double Timer::time_diff_nano() {
+    return (double(diff()) * 1000) / CPU_FREQ;
+}
 #endif
