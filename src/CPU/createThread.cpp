@@ -16,15 +16,16 @@ using namespace std;
 // getpid() cache has been deprecated, see https://man7.org/linux/man-pages/man2/getpid.2.html
 void *routine(void *ptr) {
     // create pipes
-    pthread_exit(NULL);
+    return NULL;
 }
 double create_thread_time_chrono_innerloop() {
     int p;
     pthread_t tid;
-    const int iter = 1000;
+    const int iter = 10000;
     auto start = chrono::steady_clock::now();
     for(ssize_t i = iter; i > 0; i--) {
         pthread_create(&tid, NULL, routine, (void *) p);
+        pthread_join(tid, NULL); 
     }
     auto end = chrono::steady_clock::now();
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iter;
@@ -32,7 +33,7 @@ double create_thread_time_chrono_innerloop() {
 
 double create_thread_time_chrono_outerloop() {
     double total = 0;
-    const int iter = 1000;
+    const int iter = 10000;
     int p;
     pthread_t tid;
     for(ssize_t i = iter; i > 0; i--) {
@@ -50,16 +51,17 @@ double create_thread_time_rtdsc_innerloop() {
     int p;
     pthread_t tid;
     t.begin();
-    const int iter = 1000;
+    const int iter = 10000;
     for(ssize_t i = iter; i > 0; i--) {
         pthread_create(&tid, NULL, routine, (void *) p);
+        pthread_join(tid, NULL); 
     }
     t.end();
     return t.time_diff_micro() / iter;
 }
 
 double create_thread_time_rtdsc_outerloop() {
-    const int iter = 1000;
+    const int iter = 10000;
     double total = 0;
     for(ssize_t i = iter; i > 0; i--) {
         int p;
