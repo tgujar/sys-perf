@@ -41,7 +41,7 @@ double read_BW() {
     // }
 
     for(int i = 0; i < ARR_SIZE; i+=UNROLL) {
-        // #pragma unroll // unrolled loop to avoid skewed measurements from jmp
+        #pragma unroll // unrolled loop to avoid skewed measurements from jmp
         for (int j = 0; j < UNROLL; j++) {
             result += ptr[i+j];
         }
