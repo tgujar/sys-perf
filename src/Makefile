@@ -32,5 +32,10 @@ createThread:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
+pageFault:
+	bash /Memory/createFile.sh
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/pageFault Memory/pageFault.cpp ${INCL_CPP}
+	./${OUTDIR}/pageFault
+
 clean:
 	rm -f ./${OUTDIR}/*
