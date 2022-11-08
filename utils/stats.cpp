@@ -19,6 +19,12 @@ template <typename T> void Stats<T>::run_func( T(*func)(bool), bool isUnitCycle)
     }
 }
 
+template <typename T> void Stats<T>::run_func( T(*func)(int*, int, int), int mem[], int array_size, int stride) {
+    for (int i = 0; i < m_runs; i++) {
+        m_vals.push_back(func(mem, array_size, stride));
+    }
+}
+
 template <typename T> double Stats<T>::mean() {
     if (m_vals.size() == 0) {
         return 0;

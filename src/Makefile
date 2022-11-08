@@ -33,5 +33,9 @@ createThread:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
+ramAccessTime:
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
+	./${OUTDIR}/ramAccessTime
+
 clean:
 	rm -f ./${OUTDIR}/*
