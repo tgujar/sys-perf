@@ -3,7 +3,10 @@
 #include <thread>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/mman.h>
 #include <sched.h>
+#include<stdio.h> 
+#include <fcntl.h> 
 #include <stdexcept>
 #include "timer.hpp"
 #include "stats.hpp"
