@@ -1,0 +1,1 @@
+Could you run createFile.sh first it simply creates a random file of around 4.2 GB.
