@@ -22,12 +22,11 @@ double memory_access_time_given_stride_arraysize(int mem[], int array_size, int 
         // int y = mem[idx];
         // idx = (idx + stride) % array_size;
         // count--;
-        int y = mem[idx];
-        idx = y;
+        idx = mem[idx];
         count--;
     }
     t.end();
-    return t.time_diff_nano();
+    return t.time_diff_nano() / N_LOADS;
 }
 
 map<int, double> memory_access_time_fixed_array_size(int array_size)
@@ -46,22 +45,31 @@ map<int, double> memory_access_time_fixed_array_size(int array_size)
 map<int, double> memory_access_time_fixed_stride(int stride)
 {
     map<int, double> times;
-    Stats<double> s(N_RUNS);
+    // Stats<double> s(N_RUNS);
     for (int j = 0; j < array_sizes.size(); j++)
     {
-        int *mem = new int[array_sizes[j]];
-        for (int i = 0; i < array_sizes[j]; i++)
+        double mean = 0.0;
+        for (int i = 0; i < N_RUNS; i++)
         {
-            int bucket = (i/stride)*stride;
-            int offset = rand() % array_sizes[j];
-            // randomly assigning indices to have cache misses
-            mem[i] = (bucket + offset) % array_sizes[j]; 
+            int *mem = new int[array_sizes[j]];
+            for (int k = 0; k < array_sizes[j]; k++)
+            {
+                mem[k] = (k + stride) % array_sizes[j];
+            }
+            mean += memory_access_time_given_stride_arraysize(mem, array_sizes[j], stride);
+            delete[] mem;
         }
-        s.run_func(memory_access_time_given_stride_arraysize, mem, array_sizes[j], stride);
-        //double time = memory_access_time_given_stride_arraysize(mem, array_sizes[j], stride);
-        times[array_sizes[j]] = s.mean();
-        delete[] mem;
-        s.reset_vals();
+        times[array_sizes[j]] = mean / N_RUNS;
+        // for (int i = 0; i < array_sizes[j]; i++)
+        // {
+        //     int bucket = (i/stride)*stride;
+        //     int offset = rand() % array_sizes[j];
+        //     // randomly assigning indices to have cache misses
+        //     mem[i] = (bucket + offset) % array_sizes[j];
+        // }
+        // double time = memory_access_time_given_stride_arraysize(mem, array_sizes[j], stride);
+        // delete[] mem;
+        // s.reset_vals();
     }
     return times;
 }
@@ -84,12 +92,12 @@ int main()
 {
     use_cores(vector<int>{0}); // force process to use only single core
 
-    for (int i = 13; i <= 30; i++)
+    for (int i = 11; i <= 30; i++)
     {
         int sz = (1 << i) / sizeof(int);
         array_sizes.push_back(sz);
     }
-    strides = {8, 16, 32, 64, 128};
+    strides = {1, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
 
     // for (int i = 0; i < array_sizes.size(); i++)
     // {
