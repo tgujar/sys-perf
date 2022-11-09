@@ -97,7 +97,7 @@ int main()
         int sz = (1 << i) / sizeof(int);
         array_sizes.push_back(sz);
     }
-    strides = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
+    strides = {64, 128, 256, 512, 1024, 2048, 4096, 8192};
 
     // for (int i = 0; i < array_sizes.size(); i++)
     // {
