@@ -13,9 +13,11 @@ with open('./src/out.txt') as f:
 for stride in strides:
     x = [math.log2(int(item[0])) for item in strides[stride]]
     y = [item[1] for item in strides[stride]]
-    y = [float(z) / (10**6) for z in y]
+    y = [float(z) for z in y]
     plt.plot(x, y, label=str(stride))
     plt.xticks(x)
+plt.xlabel('log2 (Array size in bytes)')
+plt.ylabel('Latency (in ns)')
 plt.axvline(x=15)
 plt.text(15.1, 35,'32KB')
 plt.axvline(x=20)

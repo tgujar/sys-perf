@@ -8,7 +8,7 @@ using namespace std;
 
 vector<int> array_sizes; // in bytes
 vector<int> strides;
-const int N_RUNS = 5;
+const int N_RUNS = 3;
 const int N_LOADS = 1000000;
 
 double memory_access_time_given_stride_arraysize(int mem[], int array_size, int stride)
@@ -97,7 +97,7 @@ int main()
         int sz = (1 << i) / sizeof(int);
         array_sizes.push_back(sz);
     }
-    strides = {1, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
+    strides = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
 
     // for (int i = 0; i < array_sizes.size(); i++)
     // {
