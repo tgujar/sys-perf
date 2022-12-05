@@ -56,6 +56,9 @@ remote_rtt:
 	g++ -o ${OUTDIR}/remote_rtt Network/remote_rtt.cpp -lpthread
 	./${OUTDIR}/remote_rtt
 
+netbw:
+	g++ -I ../utils -DREMOTE_IP=\"192.168.1.11\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/netbw Network/bw.cpp ${INCL_CPP}
+	./${OUTDIR}/netbw
 	
 clean:
 	rm -f ./${OUTDIR}/*
