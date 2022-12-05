@@ -51,5 +51,21 @@ writeBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
 	./${OUTDIR}/writeBW
 
+server:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/server Network/server.cpp ${INCL_CPP}
+	./${OUTDIR}/server 8070
+
+client_setup:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_setup Network/client_setup.cpp ${INCL_CPP}
+	./${OUTDIR}/client_setup localhost 8070
+
+client_teardown:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_teardown Network/client_teardown.cpp ${INCL_CPP}
+	./${OUTDIR}/client_teardown localhost 8070
+
+fileContention:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention FS/fileContention.cpp ${INCL_CPP}
+	./${OUTDIR}/fileContention 6
+
 clean:
 	rm -f ./${OUTDIR}/*
