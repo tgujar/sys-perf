@@ -8,6 +8,7 @@ template <typename T> class Stats {
         Stats(int runs);
         void run_func(T(*func)());
         void run_func(T(*func)(bool), bool isUnitCycle);
+        void run_func( T(*func)(int*, int, int), int mem[], int array_size, int stride);
         double mean();
         double median();
         double std_dev();

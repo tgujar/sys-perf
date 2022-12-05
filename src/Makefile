@@ -34,7 +34,15 @@ createThread:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
+ramAccessTime:
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
+	./${OUTDIR}/ramAccessTime
+
 # Memory OPS
+ramAccessTime:
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
+	./${OUTDIR}/ramAccessTime
+  
 readBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/readBW Memory/readBW.cpp ${INCL_CPP}
 	./${OUTDIR}/readBW
