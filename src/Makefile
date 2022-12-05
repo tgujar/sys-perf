@@ -1,6 +1,7 @@
 INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp
 OUTDIR = ../build
 
+# CPU ops
 syscall:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/syscall CPU/syscall.cpp ${INCL_CPP}
 	./${OUTDIR}/syscall
@@ -36,6 +37,19 @@ createThread:
 ramAccessTime:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
 	./${OUTDIR}/ramAccessTime
+
+# Memory OPS
+ramAccessTime:
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
+	./${OUTDIR}/ramAccessTime
+  
+readBW:
+	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/readBW Memory/readBW.cpp ${INCL_CPP}
+	./${OUTDIR}/readBW
+
+writeBW:
+	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
+	./${OUTDIR}/writeBW
 
 clean:
 	rm -f ./${OUTDIR}/*
