@@ -18,7 +18,7 @@ using namespace std;
 string TRANSMIT_STR(MESSAGE_SIZE, 'a'); 
 #define MAXSIZE MESSAGE_SIZE + 1 // we transmit 256 bytes + 1 byte for the null terminator
 
-#define REQUESTS 10000
+#define REQUESTS 1000
 #define ITERATIONS 10
 
 void create_server(uint16_t port) {
@@ -43,7 +43,7 @@ void create_server(uint16_t port) {
         cout << "Cannot listen on port " << port << ". Error no: " << err;
         exit(1);
     }
-
+    vector<thread> threads;
     // server runs one more time than REQUESTS*ITERATIONS to account for the initial connection check
     for(int i = 0; i <= REQUESTS*ITERATIONS; i++) {
         sockaddr_in *client = new sockaddr_in;
@@ -65,8 +65,11 @@ void create_server(uint16_t port) {
             }
             close(fd);
         });
-        t1.detach();
+        threads.push_back(move(t1));
     }   
+    for (auto& t : threads) {
+        t.join();
+    }
     close(tcp_socket);
 }
 
@@ -121,6 +124,7 @@ int main(int argc, char *argv[]) {
 
     while(!create_client("0.0.0.0", 8080)) {
         cout << "Waiting for server to start ..." << endl;
+        sleep(1);
     }
     cout << "Server started" << endl;
     Stats<double> r(ITERATIONS);
@@ -134,6 +138,7 @@ int main(int argc, char *argv[]) {
     #ifdef REMOTE_PORT
         while(!create_client(REMOTE_IP, REMOTE_PORT)) {
             cout << "Waiting for server to start ..." << endl;
+            sleep(1);
         }
         cout << "Remote Server started" << endl;
         r.run_func([]() {return measure_rtt(REMOTE_IP, REMOTE_PORT);});
