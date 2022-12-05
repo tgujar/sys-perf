@@ -34,10 +34,6 @@ createThread:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
-ramAccessTime:
-	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
-	./${OUTDIR}/ramAccessTime
-
 # Memory OPS
 ramAccessTime:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
@@ -51,5 +47,10 @@ writeBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
 	./${OUTDIR}/writeBW
 
+## Netowrk 
+rtt:
+	g++ -I ../utils -DREMOTE_IP=\"192.168.1.11\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/rtt Network/rtt.cpp ${INCL_CPP}
+	./${OUTDIR}/rtt
+	
 clean:
 	rm -f ./${OUTDIR}/*
