@@ -47,9 +47,7 @@ writeBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
 	./${OUTDIR}/writeBW
 
-clean:
-	rm -f ./${OUTDIR}/*
-
+# Filesystem 
 fileReadTime:
 	bash Filesystem/createFile.sh
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_seq Filesystem/readtime_sequential.cpp ${INCL_CPP}
@@ -63,3 +61,7 @@ fscacheSize:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/cacheSize Filesystem/cache_size.cpp ${INCL_CPP}
 	./${OUTDIR}/cacheSize
 	rm Filesystem/temp/*.txt
+
+clean:
+	rm -f ./${OUTDIR}/*
+
