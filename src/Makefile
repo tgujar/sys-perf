@@ -61,3 +61,9 @@ fileReadTime:
 	./${OUTDIR}/fileReadTime_seq
 	./${OUTDIR}/fileReadTime_rand
 	rm Filesystem/temp/*.txt
+
+cacheSize:
+	bash Filesystem/createFile.sh
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/cacheSize Filesystem/cache_size.cpp ${INCL_CPP}
+	./${OUTDIR}/cacheSize
+	rm Filesystem/temp/*.txt

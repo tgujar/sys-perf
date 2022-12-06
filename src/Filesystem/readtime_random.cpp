@@ -66,6 +66,14 @@ double rand_read_time_rtdsc_innerloop() {
     int blocksize = 4*1024;
     int numOfBlocksinMB = (1024*1024)/(4*1024);
 
+    int ft;
+    char* data = "3";
+
+    sync();
+    ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    write(ft, data, sizeof(char));
+    close(ft);
+
     int fd = open(filenames[fileNum], O_RDONLY | O_DIRECT);
     int sizeinMB = filesizes[fileNum];
     
