@@ -91,8 +91,8 @@ double start_file_reading()
     double total_time = 0;
     int file_size = get_file_size(file_name);
     int n_blocks = file_size / block_size;
-    // 655 for 64 MB file and 4096B block size
-    int read_blocks = n_blocks / 100; // read a fraction of total blocks
+    // 546 for 64 MB file and 4096B block size
+    int read_blocks = n_blocks / 30; // read a fraction of total blocks
     //cout << "Read_blocks " << read_blocks << endl;
     for (int i = 0; i < N_ITERATIONS; i++)
     {
@@ -103,11 +103,11 @@ double start_file_reading()
         // https://stackoverflow.com/questions/51993571/how-to-properly-use-posix-memalign
         // https://stackoverflow.com/questions/6001272/how-can-i-read-a-file-with-read-and-o-direct-in-c-on-linux
         // Allocate memory of 2*block size bytes with an alignment of block_size bytes.
-        if (posix_memalign((void **)&buffer, 512, block_size))
-        {
-            cerr << "posix_memalign failed" << endl;
-            exit(EXIT_FAILURE);
-        }
+        // if (posix_memalign((void **)&buffer, 512, block_size))
+        // {
+        //     cerr << "posix_memalign failed" << endl;
+        //     exit(EXIT_FAILURE);
+        // }
         // cout<<"Number of blocks "<<n_blocks<<endl;
         int fd;
         if ((fd = open(file_path.c_str(), O_RDONLY | O_DIRECT)) == -1)
