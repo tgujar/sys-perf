@@ -14,14 +14,13 @@
 
 using namespace std;
 
-#define MESSAGE_SIZE 52428800 // 50 MB
+#define MESSAGE_SIZE 52428800  // 50 MB
 char *TRANSMIT_STR;
 #define MAXSIZE MESSAGE_SIZE + 1 // we transmit 256 bytes + 1 byte for the null terminator
 
-#define REQUESTS 10
-#define ITERATIONS 10
-//1,048,576
-//212992
+#define REQUESTS 5
+#define ITERATIONS 5
+
 void make_transmit_str() {
     if (posix_memalign((void **)&TRANSMIT_STR, getpagesize(), MAXSIZE*sizeof(char)) != 0) {
         cout << "Error allocating memory for TRANSMIT_STR";
@@ -146,7 +145,7 @@ int main(int argc, char *argv[]) {
         }
         cout << "Remote Server started" << endl;
         r.run_func([]() {return measure_bw(REMOTE_IP, REMOTE_PORT);});
-        cout << endl << "Remote RTT (64 bytes)" << endl <<"Mean: "<< r.mean() <<"ns" << endl << "Std dev: " << r.std_dev() << endl;
+        cout << endl << "Remote BW" << endl <<"Mean: "<< r.mean() <<"MB/s" << endl << "Std dev: " << r.std_dev() << endl;
     #endif
     #endif
 } 

@@ -57,7 +57,7 @@ remote_rtt:
 	./${OUTDIR}/remote_rtt
 
 netbw:
-	g++ -I ../utils -DREMOTE_IP=\"192.168.1.11\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/netbw Network/bw.cpp ${INCL_CPP}
+	g++ -I ../utils -DREMOTE_IP=\"192.168.1.245\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/netbw Network/bw.cpp ${INCL_CPP}
 	./${OUTDIR}/netbw
 
 remote_netbw:
