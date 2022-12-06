@@ -18,6 +18,14 @@ using namespace std;
 // getpid() cache has been deprecated, see https://man7.org/linux/man-pages/man2/getpid.2.html
 
 double page_fault_time_chrono_innerloop() {
+    int ft;
+    char* data = "3";
+
+    sync();
+    ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    write(ft, data, sizeof(char));
+    close(ft);
+
     long int size = 4606352424;
     int offset = 16777216;
     size -= 20*offset;
@@ -38,7 +46,7 @@ double page_fault_time_chrono_innerloop() {
     char s;
 
     auto start = chrono::steady_clock::now();
-    const int iter = 1000;
+    const int iter = 10000;
     for(ssize_t i = iter; i > 0; i--) {
         s =  ptr[(i * offset) % (size - 1)];
     }
@@ -52,6 +60,14 @@ double page_fault_time_chrono_innerloop() {
 }
 
 double page_fault_time_rtdsc_innerloop() {
+    int ft;
+    char* data = "3";
+
+    sync();
+    ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    write(ft, data, sizeof(char));
+    close(ft);
+    
     long int size = 4606352424;
     int offset = 16777216;
     size -= 20*offset;
@@ -73,7 +89,7 @@ double page_fault_time_rtdsc_innerloop() {
 
     Timer t;
     t.begin();
-    const int iter = 1000;
+    const int iter = 10000;
     for(ssize_t i = iter; i > 0; i--) {
         s =  ptr[(i * offset) % (size - 1)];
     }
@@ -89,7 +105,7 @@ double page_fault_time_rtdsc_innerloop() {
 
 
 int main() {
-    Stats<double> s(10), t(10);
+    Stats<double> s(100), t(100);
     use_cores(vector<int> {0});
     s.run_func(page_fault_time_chrono_innerloop);
     cout << "Mean (chrono): "<< s.mean() << " us"<< endl;
