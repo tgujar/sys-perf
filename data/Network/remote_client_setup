@@ -1,0 +1,7 @@
+./../build/client_setup "192.168.1.245" 8070
+0x7fec087b1a40
+Server 0x7fec087b1a40 Port 8070
+Mean : 11310.7 micro seconds
+Variance : 11711 micro seconds
+Median : 9919.24 micro seconds
+Std dev : 108.217 micro seconds
