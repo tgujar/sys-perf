@@ -12,8 +12,8 @@
 #include "stats.hpp"
 #include "proc.hpp"
 
-const char*  filenames[10] = {"Filesystem/temp/file4M.txt", "Filesystem/temp/file8M.txt", "Filesystem/temp/file16M.txt", "Filesystem/temp/file32M.txt", "Filesystem/temp/file64M.txt", "Filesystem/temp/file128M.txt", "Filesystem/temp/file256M.txt", "Filesystem/temp/file512M.txt", "Filesystem/temp/file1G.txt", "Filesystem/temp/file2G.txt"};
-int filesizes[10] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048};
+const char*  filenames[10] = {"Filesystem/temp/file512M.txt", "Filesystem/temp/file1G.txt", "Filesystem/temp/file2G.txt", "Filesystem/temp/file4G.txt", "Filesystem/temp/file8G.txt"};
+int filesizes[10] = {512, 1024, 2048, 4096, 8192};
 int fileNum = 0;
 
 using namespace std;
@@ -92,7 +92,7 @@ double rand_read_time_rtdsc_innerloop() {
 }
 
 int main() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         fileNum = i;
         cout<<"Size of the file:"<<filesizes[i]<<endl;
         Stats<double> s(100), t(100);

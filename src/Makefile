@@ -59,7 +59,7 @@ fileReadTime:
 	rm Filesystem/temp/*.txt
 
 fscacheSize:
-	bash Filesystem/createFile.sh
+	bash Filesystem/cache_size_create_file.sh
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/cacheSize Filesystem/cache_size.cpp ${INCL_CPP}
 	./${OUTDIR}/cacheSize
 	rm Filesystem/temp/*.txt
