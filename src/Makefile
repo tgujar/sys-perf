@@ -60,3 +60,4 @@ fileReadTime:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_rand Filesystem/readtime_random.cpp ${INCL_CPP}
 	./${OUTDIR}/fileReadTime_seq
 	./${OUTDIR}/fileReadTime_rand
+	rm Filesystem/temp/*.txt
