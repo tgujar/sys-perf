@@ -56,6 +56,7 @@ int main(int argc, char **argv)
         exit(0);
     }
     server = gethostbyname(argv[1]); // return entry for host with NAME
+    cout<<server<<endl;
     port = atoi(argv[2]);
     cout << "Server " << server << " Port " << port << endl;
     Stats<double> s(N_RUNS);

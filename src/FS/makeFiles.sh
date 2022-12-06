@@ -1,3 +1,5 @@
+mkdir -p temp
+cd temp
 for i in {0..11}
 do
     file_name="file${i}.txt"

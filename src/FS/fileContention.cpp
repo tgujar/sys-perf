@@ -12,10 +12,10 @@
 using namespace std;
 
 const int N_RUNS = 5;
-const int N_ITERATIONS = 5;
+const int N_ITERATIONS = 15;
 const string FILE_PREFIX = "file";
 const string FILE_SUFFIX = ".txt";
-const string FILE_DIRECTORY = "../temp_files/";
+const string FILE_DIRECTORY = "FS/temp/";
 int n_processes;
 
 // Returns block size
@@ -142,7 +142,7 @@ double start_file_reading()
 
 int main(int argc, char *argv[])
 {
-    int status;
+    int status = 0;
     pid_t wpid;
     n_processes = stoi(argv[1]);
     //cout << "Number of processes " << n_processes << endl;
@@ -154,10 +154,10 @@ int main(int argc, char *argv[])
         //cout << "Pids " << parent_pid << " " << getpid() << endl;
         s.run_func(start_file_reading);
     }
+    // wait for child processes to terminate
+    while ((wait(NULL)) > 0);
     if (getpid() == parent_pid)
     {
-        // while ((wpid = wait(&status)) > 0)
-        //     ;
         cout << "Mean : " << s.mean() << " micro seconds" << endl;
         cout << "Variance : " << s.variance() << " micro seconds" << endl;
         cout << "Median : " << s.median() << " micro seconds" << endl;
