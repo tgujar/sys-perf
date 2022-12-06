@@ -46,7 +46,7 @@ double page_fault_time_chrono_innerloop() {
     char s;
 
     auto start = chrono::steady_clock::now();
-    const int iter = 10000;
+    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
         s =  ptr[(i * offset) % (size - 1)];
     }
@@ -67,7 +67,7 @@ double page_fault_time_rtdsc_innerloop() {
     ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
     write(ft, data, sizeof(char));
     close(ft);
-    
+
     long int size = 4606352424;
     int offset = 16777216;
     size -= 20*offset;
@@ -89,7 +89,7 @@ double page_fault_time_rtdsc_innerloop() {
 
     Timer t;
     t.begin();
-    const int iter = 10000;
+    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
         s =  ptr[(i * offset) % (size - 1)];
     }
