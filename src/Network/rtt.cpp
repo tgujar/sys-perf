@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
         }
         cout << "Remote Server started" << endl;
         s.run_func([]() {return measure_rtt(REMOTE_IP, REMOTE_PORT);});
-        cout << endl << "Local RTT (64 bytes)" << endl <<"Mean: "<< s.mean() <<"ms" << endl << "Std dev: " << s.std_dev() << endl;
+        cout << endl << "Remote RTT (64 bytes)" << endl <<"Mean: "<< s.mean() <<"ms" << endl << "Std dev: " << s.std_dev() << endl;
     #endif
     #endif
 } 
