@@ -12,8 +12,8 @@
 #include "stats.hpp"
 #include "proc.hpp"
 
-const char*  filenames[8] = {"Filesystem/temp/file4M.txt", "Filesystem/temp/file8M.txt", "Filesystem/temp/file16M.txt", "Filesystem/temp/file32M.txt", "Filesystem/temp/file64M.txt", "Filesystem/temp/file128M.txt", "Filesystem/temp/file256M.txt", "Filesystem/temp/file512M.txt", "Filesystem/temp/file1G.txt", "Filesystem/temp/file2G.txt", "Filesystem/temp/file4G.txt", "Filesystem/temp/file8G.txt"};
-int filesizes[8] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
+const char*  filenames[10] = {"Filesystem/temp/file4M.txt", "Filesystem/temp/file8M.txt", "Filesystem/temp/file16M.txt", "Filesystem/temp/file32M.txt", "Filesystem/temp/file64M.txt", "Filesystem/temp/file128M.txt", "Filesystem/temp/file256M.txt", "Filesystem/temp/file512M.txt", "Filesystem/temp/file1G.txt", "Filesystem/temp/file2G.txt"};
+int filesizes[10] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048};
 int fileNum = 0;
 
 using namespace std;
@@ -32,7 +32,7 @@ double rand_read_time_chrono_innerloop() {
     }
 
     void* bf = malloc(blocksize);
-    const int iter = 10000;
+    const int iter = 100;
     long array[iter];
     const int numOfBlocks = sizeinMB * numOfBlocksinMB;
     time_t t;
@@ -68,7 +68,7 @@ double rand_read_time_rtdsc_innerloop() {
     }
 
     void* bf = malloc(blocksize);
-    const int iter = 10000;
+    const int iter = 100;
     long array[iter];
     const int numOfBlocks = sizeinMB * numOfBlocksinMB;
     time_t t1;
@@ -92,10 +92,10 @@ double rand_read_time_rtdsc_innerloop() {
 }
 
 int main() {
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 10; i++) {
         fileNum = i;
         cout<<"Size of the file:"<<filesizes[i]<<endl;
-        Stats<double> s(1000), t(1000);
+        Stats<double> s(100), t(100);
         use_cores(vector<int> {0});
         s.run_func(rand_read_time_chrono_innerloop);
         cout << "Mean (chrono): "<< s.mean() << " us"<< endl;

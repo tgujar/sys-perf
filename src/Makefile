@@ -34,10 +34,6 @@ createThread:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
-ramAccessTime:
-	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
-	./${OUTDIR}/ramAccessTime
-
 # Memory OPS
 ramAccessTime:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
@@ -62,7 +58,7 @@ fileReadTime:
 	./${OUTDIR}/fileReadTime_rand
 	rm Filesystem/temp/*.txt
 
-cacheSize:
+fscacheSize:
 	bash Filesystem/createFile.sh
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/cacheSize Filesystem/cache_size.cpp ${INCL_CPP}
 	./${OUTDIR}/cacheSize
