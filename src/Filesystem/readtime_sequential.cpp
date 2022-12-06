@@ -65,8 +65,8 @@ double seq_read_time_rtdsc_innerloop() {
     void* bf = malloc(blocksize);
     const int iter = 10000;
     const int numOfBlocks = sizeinMB * numOfBlocksinMB - iter - 1;
-    time_t t;
-    srand((unsigned) time(&t));
+    time_t t1;
+    srand((unsigned) time(&t1));
     long offset = rand() % numOfBlocks;
     offset = offset*blocksize;
     lseek(fd, offset, SEEK_SET);

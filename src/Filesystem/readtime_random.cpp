@@ -71,8 +71,8 @@ double rand_read_time_rtdsc_innerloop() {
     const int iter = 10000;
     long array[iter];
     const int numOfBlocks = sizeinMB * numOfBlocksinMB;
-    time_t t;
-    srand((unsigned) time(&t));
+    time_t t1;
+    srand((unsigned) time(&t1));
     for(int i=0; i < iter; i++)
     {
         array[i] = rand() %numOfBlocks ;
