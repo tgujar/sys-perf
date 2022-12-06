@@ -1,5 +1,6 @@
 INCL_CPP= ../utils/timer.cpp ../utils/stats.cpp
 OUTDIR = ../build
+NFSDIR = /mnt/files
 
 # CPU ops
 syscall:
@@ -34,10 +35,6 @@ createThread:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/createThread CPU/createThread.cpp ${INCL_CPP}
 	./${OUTDIR}/createThread
 
-ramAccessTime:
-	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
-	./${OUTDIR}/ramAccessTime
-
 # Memory OPS
 ramAccessTime:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
@@ -61,3 +58,13 @@ fileReadTime:
 	./${OUTDIR}/fileReadTime_seq
 	./${OUTDIR}/fileReadTime_rand
 	rm Filesystem/temp/*.txt
+
+remote_fileReadTime:
+	sudo mount -t nfs -o noac,lookupcache=none 192.168.1.245:${NFSDIR} Filesystem/temp
+	bash Filesystem/remote_createFile.sh
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/remote_fileReadTime_seq Filesystem/remote_readtime_sequential.cpp ${INCL_CPP}
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/remote_fileReadTime_rand Filesystem/remote_readtime_random.cpp ${INCL_CPP}
+	./${OUTDIR}/remote_fileReadTime_seq
+	./${OUTDIR}/remote_fileReadTime_rand
+	rm Filesystem/temp/*.txt
+	sudo umount Filesystem/temp
