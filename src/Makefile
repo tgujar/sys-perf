@@ -53,3 +53,10 @@ writeBW:
 
 clean:
 	rm -f ./${OUTDIR}/*
+
+fileReadTime:
+	bash Filesystem/createFile.sh
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_seq Filesystem/readtime_sequential.cpp ${INCL_CPP}
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_rand Filesystem/readtime_random.cpp ${INCL_CPP}
+	./${OUTDIR}/fileReadTime_seq
+	./${OUTDIR}/fileReadTime_rand
