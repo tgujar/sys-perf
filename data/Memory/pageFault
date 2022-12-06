@@ -1,0 +1,5 @@
+./../build/pageFault
+Mean (chrono): 10.2415 us
+Standard deviation (chrono): 8.23018 us
+Mean (rtdsc): 3.74366 us
+Standard deviation (rtdsc): 0.548075 us
