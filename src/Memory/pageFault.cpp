@@ -27,7 +27,7 @@ double page_fault_time_chrono_innerloop() {
     close(ft);
 
     long int size = 4606352424;
-    int offset = 16777216;
+    int offset = 4*4*1024;
     size -= 20*offset;
     int fd = open("sample.txt", O_RDWR);
     
@@ -38,17 +38,27 @@ double page_fault_time_chrono_innerloop() {
     }
     
     char *ptr = (char*)mmap( NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0 );
+    // char *ptr = (char*)mmap( NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_POPULATE, fd, 0 );
     if(ptr == MAP_FAILED){
         printf("Mapping Failed\n");
         exit(1);
     }
     
+    time_t t;
+    const int iter = 1000;
+    long array[iter];
+    srand((unsigned) time(&t));
+    for(int i=0; i < iter; i++)
+    {
+        array[i] = rand() % 250000 ;
+    }
+
     char s;
 
     auto start = chrono::steady_clock::now();
-    const int iter = 1000;
+    
     for(ssize_t i = iter; i > 0; i--) {
-        s =  ptr[(i * offset) % (size - 1)];
+        s =  ptr[(array[i] * offset) % (size - 1)];
     }
     auto end = chrono::steady_clock::now();
     int err = munmap(ptr, size);
@@ -56,6 +66,7 @@ double page_fault_time_chrono_innerloop() {
         printf("UnMapping Failed\n");
         exit(1);
     }
+    close(fd);
     return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iter;
 }
 
@@ -69,7 +80,7 @@ double page_fault_time_rtdsc_innerloop() {
     close(ft);
 
     long int size = 4606352424;
-    int offset = 16777216;
+    int offset = 4*4*1024;
     size -= 20*offset;
     int fd = open("sample.txt", O_RDWR);
     
@@ -84,14 +95,21 @@ double page_fault_time_rtdsc_innerloop() {
         printf("Mapping Failed\n");
         exit(1);
     }
-    
+    time_t t1;
+    const int iter = 1000;
+    long array[iter];
+    srand((unsigned) time(&t1));
+    for(int i=0; i < iter; i++)
+    {
+        array[i] = rand() % 250000 ;
+    }
+
     char s;
 
     Timer t;
     t.begin();
-    const int iter = 1000;
     for(ssize_t i = iter; i > 0; i--) {
-        s =  ptr[(i * offset) % (size - 1)];
+        s =  ptr[(array[i] * offset) % (size - 1)];
     }
     t.end();
     int err = munmap(ptr, size);
@@ -99,7 +117,7 @@ double page_fault_time_rtdsc_innerloop() {
         printf("UnMapping Failed\n");
         exit(1);
     }
-    
+    close(fd);
     return t.time_diff_micro() / iter;
 }
 
