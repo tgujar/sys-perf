@@ -18,7 +18,7 @@ using namespace std;
 string TRANSMIT_STR(MESSAGE_SIZE, 'a'); 
 #define MAXSIZE MESSAGE_SIZE + 1 // we transmit 256 bytes + 1 byte for the null terminator
 
-#define REQUESTS 1000
+#define REQUESTS 100
 #define ITERATIONS 10
 
 void create_server(uint16_t port) {
@@ -111,7 +111,7 @@ double measure_rtt(string ip, uint16_t port) {
     }
     t.end();
     cout << "..." << flush;
-    return REQUESTS / (t.time_diff_nano()); // return total time
+    return (t.time_diff_micro()) / (REQUESTS*1000); // return total time
 }
 
 
@@ -127,12 +127,12 @@ int main(int argc, char *argv[]) {
         sleep(1);
     }
     cout << "Server started" << endl;
-    Stats<double> r(ITERATIONS);
+    Stats<double> r(ITERATIONS), s(ITERATIONS);
     r.run_func([]() {return measure_rtt("0.0.0.0", 8080);});
-    cout << endl << "Local RTT (64 bytes)" << endl <<"Mean: "<< r.mean() <<"ns" << endl << "Std dev: " << r.std_dev() << endl;
+    cout << endl << "Local RTT (64 bytes)" << endl <<"Mean: "<< r.mean() <<"ms" << endl << "Std dev: " << r.std_dev() << endl;
     wait(NULL);
 
-    r.reset_vals();
+
 
     #ifdef REMOTE_IP
     #ifdef REMOTE_PORT
@@ -141,8 +141,8 @@ int main(int argc, char *argv[]) {
             sleep(1);
         }
         cout << "Remote Server started" << endl;
-        r.run_func([]() {return measure_rtt(REMOTE_IP, REMOTE_PORT);});
-        cout << endl << "Remote RTT (64 bytes)" << endl <<"Mean: "<< r.mean() <<"ns" << endl << "Std dev: " << r.std_dev() << endl;
+        s.run_func([]() {return measure_rtt(REMOTE_IP, REMOTE_PORT);});
+        cout << endl << "Local RTT (64 bytes)" << endl <<"Mean: "<< s.mean() <<"ms" << endl << "Std dev: " << s.std_dev() << endl;
     #endif
     #endif
 } 

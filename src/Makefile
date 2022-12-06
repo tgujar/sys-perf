@@ -49,8 +49,13 @@ writeBW:
 
 ## Netowrk 
 rtt:
-	g++ -I ../utils -DREMOTE_IP=\"192.168.1.11\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/rtt Network/rtt.cpp ${INCL_CPP}
+	g++ -I ../utils -DREMOTE_IP=\"192.168.1.245\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/rtt Network/rtt.cpp ${INCL_CPP}
 	./${OUTDIR}/rtt
+
+remote_rtt:
+	g++ -o ${OUTDIR}/remote_rtt Network/remote_rtt.cpp -lpthread
+	./${OUTDIR}/remote_rtt
+
 	
 clean:
 	rm -f ./${OUTDIR}/*

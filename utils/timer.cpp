@@ -16,6 +16,6 @@ double Timer::time_diff_micro() {
     return double(diff()) / CPU_FREQ;
 }
 double Timer::time_diff_nano() {
-    return (double(diff())) / (CPU_FREQ * 1000);
+    return (double(diff())* 1000) / (CPU_FREQ);
 }
 #endif

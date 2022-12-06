@@ -1,3 +1,18 @@
+Server started
+..............................
 Local RTT (64 bytes)
-Mean: 11.0008ns
-Std dev: 0.452473
+Mean: 0.0897693ms
+Std dev: 0.0451796
+Remote Server started
+..............................
+Local RTT (64 bytes)
+Mean: 18.4169ms
+Std dev: 0.718696
+
+--- 0.0.0.0 ping statistics ---
+11 packets transmitted, 11 received, 0% packet loss, time 10236ms
+rtt min/avg/max/mdev = 0.021/0.029/0.042/0.005 ms
+
+--- 192.168.1.245 ping statistics ---
+11 packets transmitted, 10 received, 9.09091% packet loss, time 10014ms
+rtt min/avg/max/mdev = 8.042/102.543/347.556/102.107 ms
