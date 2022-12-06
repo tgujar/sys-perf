@@ -82,7 +82,7 @@ double seq_read_time_rtdsc_innerloop() {
 }
 
 int main() {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 7; i++) {
         fileNum = i;
         cout<<"Size of the file:"<<filesizes[i]<<endl;
         Stats<double> s(100), t(100);
