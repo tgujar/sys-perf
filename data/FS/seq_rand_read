@@ -1,154 +1,110 @@
-./../build/fileReadTime_seq
+sudo ./../build/fileReadTime_seq
 Size of the file:4
-Mean (chrono): 0.837985 us
-Standard deviation (chrono): 0.202742 us
-Mean (rtdsc): 0.892792 us
-Standard deviation (rtdsc): 0.127625 us
+Mean (rtdsc): 437.519 us
+Standard deviation (rtdsc): 16.2442 us
 
 
 Size of the file:8
-Mean (chrono): 0.829685 us
-Standard deviation (chrono): 0.124618 us
-Mean (rtdsc): 0.891282 us
-Standard deviation (rtdsc): 0.0496884 us
+Mean (rtdsc): 1038.48 us
+Standard deviation (rtdsc): 25.3516 us
 
 
 Size of the file:16
-Mean (chrono): 1.22029 us
-Standard deviation (chrono): 0.350046 us
-Mean (rtdsc): 1.18655 us
-Standard deviation (rtdsc): 0.361941 us
+Mean (rtdsc): 1352.48 us
+Standard deviation (rtdsc): 25.2072 us
 
 
 Size of the file:32
-Mean (chrono): 1.02657 us
-Standard deviation (chrono): 0.198478 us
-Mean (rtdsc): 1.09426 us
-Standard deviation (rtdsc): 0.0420278 us
+Mean (rtdsc): 830.386 us
+Standard deviation (rtdsc): 28.5316 us
 
 
 Size of the file:64
-Mean (chrono): 1.01972 us
-Standard deviation (chrono): 0.0382657 us
-Mean (rtdsc): 1.09638 us
-Standard deviation (rtdsc): 0.0472561 us
+Mean (rtdsc): 1261.22 us
+Standard deviation (rtdsc): 26.1379 us
 
 
 Size of the file:128
-Mean (chrono): 1.02972 us
-Standard deviation (chrono): 0.217737 us
-Mean (rtdsc): 1.0973 us
-Standard deviation (rtdsc): 0.0738544 us
+Mean (rtdsc): 1234.32 us
+Standard deviation (rtdsc): 22.0927 us
 
 
 Size of the file:256
-Mean (chrono): 1.02085 us
-Standard deviation (chrono): 0.0654037 us
-Mean (rtdsc): 1.10038 us
-Standard deviation (rtdsc): 0.115121 us
+Mean (rtdsc): 343.689 us
+Standard deviation (rtdsc): 14.0462 us
 
 
 Size of the file:512
-Mean (chrono): 1.02466 us
-Standard deviation (chrono): 0.113561 us
-Mean (rtdsc): 1.09864 us
-Standard deviation (rtdsc): 0.16017 us
+Mean (rtdsc): 1167.75 us
+Standard deviation (rtdsc): 19.1339 us
 
 
 Size of the file:1024
-Mean (chrono): 1.02082 us
-Standard deviation (chrono): 0.0503625 us
-Mean (rtdsc): 1.09731 us
-Standard deviation (rtdsc): 0.0415311 us
+Mean (rtdsc): 1022.88 us
+Standard deviation (rtdsc): 23.1233 us
 
 
 Size of the file:2048
-Mean (chrono): 1.07932 us
-Standard deviation (chrono): 0.0479101 us
-Mean (rtdsc): 1.1618 us
-Standard deviation (rtdsc): 0.133344 us
+Mean (rtdsc): 751.843 us
+Standard deviation (rtdsc): 13.5176 us
 
 
 Size of the file:4096
-Mean (chrono): 1.08014 us
-Standard deviation (chrono): 0.0584991 us
-Mean (rtdsc): 1.16168 us
-Standard deviation (rtdsc): 0.0542416 us
+Mean (rtdsc): 1013.52 us
+Standard deviation (rtdsc): 26.9363 us
 
 
-./../build/fileReadTime_rand
+sudo ./../build/fileReadTime_rand
 Size of the file:4
-Mean (chrono): 1.60238 us
-Standard deviation (chrono): 0.0467214 us
-Mean (rtdsc): 1.72456 us
-Standard deviation (rtdsc): 0.1298 us
+Mean (rtdsc): 6185.89 us
+Standard deviation (rtdsc): 42.1328 us
 
 
 Size of the file:8
-Mean (chrono): 1.60403 us
-Standard deviation (chrono): 0.0503673 us
-Mean (rtdsc): 1.7252 us
-Standard deviation (rtdsc): 0.143 us
+Mean (rtdsc): 7941.35 us
+Standard deviation (rtdsc): 48.7013 us
 
 
 Size of the file:16
-Mean (chrono): 1.6084 us
-Standard deviation (chrono): 0.0604898 us
-Mean (rtdsc): 1.73 us
-Standard deviation (rtdsc): 0.110466 us
+Mean (rtdsc): 9019.87 us
+Standard deviation (rtdsc): 48.4221 us
 
 
 Size of the file:32
-Mean (chrono): 1.61174 us
-Standard deviation (chrono): 0.134965 us
-Mean (rtdsc): 1.73472 us
-Standard deviation (rtdsc): 0.18149 us
+Mean (rtdsc): 10425.2 us
+Standard deviation (rtdsc): 38.662 us
 
 
 Size of the file:64
-Mean (chrono): 1.61709 us
-Standard deviation (chrono): 0.0841544 us
-Mean (rtdsc): 1.73991 us
-Standard deviation (rtdsc): 0.138927 us
+Mean (rtdsc): 12922.3 us
+Standard deviation (rtdsc): 49.2145 us
 
 
 Size of the file:128
-Mean (chrono): 1.61682 us
-Standard deviation (chrono): 0.0538241 us
-Mean (rtdsc): 1.73826 us
-Standard deviation (rtdsc): 0.0414095 us
+Mean (rtdsc): 13765.7 us
+Standard deviation (rtdsc): 35.015 us
 
 
 Size of the file:256
-Mean (chrono): 1.62101 us
-Standard deviation (chrono): 0.12149 us
-Mean (rtdsc): 1.74001 us
-Standard deviation (rtdsc): 0.0601808 us
+Mean (rtdsc): 16076.9 us
+Standard deviation (rtdsc): 40.7143 us
 
 
 Size of the file:512
-Mean (chrono): 1.6217 us
-Standard deviation (chrono): 0.04251 us
-Mean (rtdsc): 1.7469 us
-Standard deviation (rtdsc): 0.161707 us
+Mean (rtdsc): 14125.8 us
+Standard deviation (rtdsc): 45.0472 us
 
 
 Size of the file:1024
-Mean (chrono): 1.62349 us
-Standard deviation (chrono): 0.059622 us
-Mean (rtdsc): 1.74466 us
-Standard deviation (rtdsc): 0.0559054 us
+Mean (rtdsc): 19673.7 us
+Standard deviation (rtdsc): 82.4833 us
 
 
 Size of the file:2048
-Mean (chrono): 1.68542 us
-Standard deviation (chrono): 0.143669 us
-Mean (rtdsc): 1.80704 us
-Standard deviation (rtdsc): 0.0620362 us
+Mean (rtdsc): 15126.4 us
+Standard deviation (rtdsc): 45.0273 us
 
 
 Size of the file:4096
-Mean (chrono): 1.67665 us
-Standard deviation (chrono): 0.0479834 us
-Mean (rtdsc): 1.80397 us
-Standard deviation (rtdsc): 0.154388 us
+Mean (rtdsc): 16679 us
+Standard deviation (rtdsc): 23.6558 us
