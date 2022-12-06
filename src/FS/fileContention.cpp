@@ -11,8 +11,8 @@
 #include <fcntl.h>
 using namespace std;
 
-const int N_RUNS = 100;
-const int N_ITERATIONS = 10;
+const int N_RUNS = 5;
+const int N_ITERATIONS = 5;
 const string FILE_PREFIX = "file";
 const string FILE_SUFFIX = ".txt";
 const string FILE_DIRECTORY = "../temp_files/";
@@ -91,16 +91,19 @@ double start_file_reading()
     double total_time = 0;
     int file_size = get_file_size(file_name);
     int n_blocks = file_size / block_size;
+    // 655 for 64 MB file and 4096B block size
     int read_blocks = n_blocks / 100; // read a fraction of total blocks
-    //cout << "Read_blocks " << n_blocks << endl;
+    //cout << "Read_blocks " << read_blocks << endl;
     for (int i = 0; i < N_ITERATIONS; i++)
     {
         // DIRECT IO
         // ifstream fin(file_name, ios::in);
         /* must be align in O_DIRECT */
         char *buffer = NULL;
-        // Allocate memory of block size + 128 bytes with an alignment of 512 bytes.
-        if (posix_memalign((void **)&buffer, 512, block_size + 128))
+        // https://stackoverflow.com/questions/51993571/how-to-properly-use-posix-memalign
+        // https://stackoverflow.com/questions/6001272/how-can-i-read-a-file-with-read-and-o-direct-in-c-on-linux
+        // Allocate memory of 2*block size bytes with an alignment of block_size bytes.
+        if (posix_memalign((void **)&buffer, 512, block_size))
         {
             cerr << "posix_memalign failed" << endl;
             exit(EXIT_FAILURE);
@@ -142,7 +145,7 @@ int main(int argc, char *argv[])
     int status;
     pid_t wpid;
     n_processes = stoi(argv[1]);
-    cout << "Number of processes " << n_processes << endl;
+    //cout << "Number of processes " << n_processes << endl;
     pid_t parent_pid = getpid();
     //cout << "Parent pid " << parent_pid << endl;
     Stats<double> s(N_RUNS);
@@ -153,8 +156,8 @@ int main(int argc, char *argv[])
     }
     if (getpid() == parent_pid)
     {
-        while ((wpid = wait(&status)) > 0)
-            ;
+        // while ((wpid = wait(&status)) > 0)
+        //     ;
         cout << "Mean : " << s.mean() << " micro seconds" << endl;
         cout << "Variance : " << s.variance() << " micro seconds" << endl;
         cout << "Median : " << s.median() << " micro seconds" << endl;

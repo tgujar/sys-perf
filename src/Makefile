@@ -65,7 +65,7 @@ client_teardown:
 
 fileContention:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention FS/fileContention.cpp ${INCL_CPP}
-	./${OUTDIR}/fileContention 6
+	./${OUTDIR}/fileContention $(N_PROCESSES)
 
 clean:
 	rm -f ./${OUTDIR}/*
