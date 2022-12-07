@@ -1,0 +1,110 @@
+sudo ./../build/fileReadTime_seq
+Size of the file:4
+Mean (rtdsc): 437.519 us
+Standard deviation (rtdsc): 16.2442 us
+
+
+Size of the file:8
+Mean (rtdsc): 1038.48 us
+Standard deviation (rtdsc): 25.3516 us
+
+
+Size of the file:16
+Mean (rtdsc): 1352.48 us
+Standard deviation (rtdsc): 25.2072 us
+
+
+Size of the file:32
+Mean (rtdsc): 830.386 us
+Standard deviation (rtdsc): 28.5316 us
+
+
+Size of the file:64
+Mean (rtdsc): 1261.22 us
+Standard deviation (rtdsc): 26.1379 us
+
+
+Size of the file:128
+Mean (rtdsc): 1234.32 us
+Standard deviation (rtdsc): 22.0927 us
+
+
+Size of the file:256
+Mean (rtdsc): 343.689 us
+Standard deviation (rtdsc): 14.0462 us
+
+
+Size of the file:512
+Mean (rtdsc): 1167.75 us
+Standard deviation (rtdsc): 19.1339 us
+
+
+Size of the file:1024
+Mean (rtdsc): 1022.88 us
+Standard deviation (rtdsc): 23.1233 us
+
+
+Size of the file:2048
+Mean (rtdsc): 751.843 us
+Standard deviation (rtdsc): 13.5176 us
+
+
+Size of the file:4096
+Mean (rtdsc): 1013.52 us
+Standard deviation (rtdsc): 26.9363 us
+
+
+sudo ./../build/fileReadTime_rand
+Size of the file:4
+Mean (rtdsc): 6185.89 us
+Standard deviation (rtdsc): 42.1328 us
+
+
+Size of the file:8
+Mean (rtdsc): 7941.35 us
+Standard deviation (rtdsc): 48.7013 us
+
+
+Size of the file:16
+Mean (rtdsc): 9019.87 us
+Standard deviation (rtdsc): 48.4221 us
+
+
+Size of the file:32
+Mean (rtdsc): 10425.2 us
+Standard deviation (rtdsc): 38.662 us
+
+
+Size of the file:64
+Mean (rtdsc): 12922.3 us
+Standard deviation (rtdsc): 49.2145 us
+
+
+Size of the file:128
+Mean (rtdsc): 13765.7 us
+Standard deviation (rtdsc): 35.015 us
+
+
+Size of the file:256
+Mean (rtdsc): 16076.9 us
+Standard deviation (rtdsc): 40.7143 us
+
+
+Size of the file:512
+Mean (rtdsc): 14125.8 us
+Standard deviation (rtdsc): 45.0472 us
+
+
+Size of the file:1024
+Mean (rtdsc): 19673.7 us
+Standard deviation (rtdsc): 82.4833 us
+
+
+Size of the file:2048
+Mean (rtdsc): 15126.4 us
+Standard deviation (rtdsc): 45.0273 us
+
+
+Size of the file:4096
+Mean (rtdsc): 16679 us
+Standard deviation (rtdsc): 23.6558 us

@@ -64,5 +64,21 @@ remote_netbw:
 	g++ -o ${OUTDIR}/remote_netbw Network/remote_bw.cpp -lpthread
 	./${OUTDIR}/remote_netbw
 	
+# Filesystem 
+fileReadTime:
+	bash Filesystem/createFile.sh
+	sudo g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_seq Filesystem/readtime_sequential.cpp ${INCL_CPP}
+	sudo g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileReadTime_rand Filesystem/readtime_random.cpp ${INCL_CPP}
+	sudo ./${OUTDIR}/fileReadTime_seq
+	sudo ./${OUTDIR}/fileReadTime_rand
+	rm Filesystem/temp/*.txt
+
+fscacheSize:
+	bash Filesystem/cache_size_create_file.sh
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/cacheSize Filesystem/cache_size.cpp ${INCL_CPP}
+	./${OUTDIR}/cacheSize
+	rm Filesystem/temp/*.txt
+
 clean:
 	rm -f ./${OUTDIR}/*
+
