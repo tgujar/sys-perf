@@ -49,9 +49,10 @@ writeBW:
 	./${OUTDIR}/writeBW
 
 pageFault:
-	# bash Memory/createFile.sh
+	bash Memory/createFile.sh
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/pageFault Memory/pageFault.cpp ${INCL_CPP}
 	cgexec -g memory:cgTeams  ./${OUTDIR}/pageFault
+	rm sample.txt
 
 ## Netowrk 
 rtt:
