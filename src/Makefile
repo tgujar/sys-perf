@@ -48,6 +48,11 @@ writeBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
 	./${OUTDIR}/writeBW
 
+pageFault:
+	# bash Memory/createFile.sh
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/pageFault Memory/pageFault.cpp ${INCL_CPP}
+	cgexec -g memory:cgTeams  ./${OUTDIR}/pageFault
+
 ## Netowrk 
 rtt:
 	g++ -I ../utils -DREMOTE_IP=\"192.168.1.245\" -DREMOTE_PORT=8080 -DCPU_FREQ=2700 -o ${OUTDIR}/rtt Network/rtt.cpp ${INCL_CPP}
@@ -110,9 +115,6 @@ remote_client_setup:
 remote_client_teardown:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_teardown Network/client_teardown.cpp ${INCL_CPP}
 	./${OUTDIR}/client_teardown "192.168.1.245" 8070
-
-
-# File System
 
 fileContention:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention Filesystem/fileContention.cpp ${INCL_CPP}

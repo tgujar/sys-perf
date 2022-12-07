@@ -16,7 +16,8 @@ using namespace std;
 // getpid() cache has been deprecated, see https://man7.org/linux/man-pages/man2/getpid.2.html
 void *routine(void *ptr) {
     // create pipes
-    return NULL;
+    use_cores(vector<int> {0});
+    pthread_exit(NULL);
 }
 double create_thread_time_chrono_innerloop() {
     int p;
