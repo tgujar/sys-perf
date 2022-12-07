@@ -118,10 +118,10 @@ remote_client_teardown:
 
 fileContention:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention Filesystem/fileContention.cpp ${INCL_CPP}
-	./${OUTDIR}/fileContention $(N_PROCESSES)
+	sudo ./${OUTDIR}/fileContention $(N_PROCESSES)
 
 fileContentionCompleteRun:
-	bash FS/run_file_contention.sh
+	sudo bash Filesystem/run_file_contention.sh
 
 clean:
 	rm -f ./${OUTDIR}/*
