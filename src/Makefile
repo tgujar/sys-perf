@@ -47,6 +47,9 @@ writeBW:
 	g++ -O2 -funroll-loops -g -I ../utils -DCPU_FREQ=2700 -o ${OUTDIR}/writeBW Memory/writeBW.cpp ${INCL_CPP}
 	./${OUTDIR}/writeBW
 
+
+
+#Network
 server:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/server Network/server.cpp ${INCL_CPP}
 	./${OUTDIR}/server 8080
@@ -61,11 +64,14 @@ loopback_client_teardown:
 
 remote_client_setup:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_setup Network/client_setup.cpp ${INCL_CPP}
-	./${OUTDIR}/client_setup "192.168.1.110" 8080
+	./${OUTDIR}/client_setup "192.168.1.245" 8070
 
 remote_client_teardown:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_teardown Network/client_teardown.cpp ${INCL_CPP}
-	./${OUTDIR}/client_teardown "192.168.1.110" 8080
+	./${OUTDIR}/client_teardown "192.168.1.245" 8070
+
+
+# File System
 
 fileContention:
 	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention FS/fileContention.cpp ${INCL_CPP}
