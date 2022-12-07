@@ -7,7 +7,7 @@ Experiments to characterize and understand a system's performance.
 ### CPU, Scheduling, and OS Services
 - Measurement overhead:
     1. Overhead of reading time: `make readTimeOverhead`
-    2. Overhead of using a loop: `make make readTimeOverheadLoop`
+    2. Overhead of using a loop: `make readTimeOverheadLoop`
 - Procedure call overhead: `make procedureCallOverhead`
 - System call overhead: `make syscall`
 - Task creation time:
