@@ -7,15 +7,15 @@ Experiments to characterize and understand a system's performance.
 ### CPU, Scheduling, and OS Services
 - Measurement overhead
 - Procedure call overhead:
-- System call overhead: make syscall
+- System call overhead: `make syscall`
 - Task creation time:
-- Context switch time(process switch): make ctxswitch
-- Context switch time(kenel thread switch): make ctxswitchkernel
+- Context switch time(process switch): `make ctxswitch`
+- Context switch time(kenel thread switch): `make ctxswitchkernel`
 
 ### Memory
 - RAM access time
-- RAM bandwidth(read): make readBW 
-- RAM bandwidth(write): make writeBW 
+- RAM bandwidth(read): `make readBW`
+- RAM bandwidth(write): `make writeBW` 
 - Page fault service time
 
 ### Network
