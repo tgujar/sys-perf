@@ -1,4 +1,4 @@
-cd FS
+cd Filesystem
 chmod +x makeFiles.sh
 ./makeFiles.sh
 echo "Temp files created"
@@ -10,4 +10,4 @@ do
     make -s N_PROCESSES=$i fileContention
     echo $'\n'
 done
-rm -rf FS/temp
+rm -rf Filesystem/temp

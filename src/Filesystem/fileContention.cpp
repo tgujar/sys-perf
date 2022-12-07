@@ -15,7 +15,7 @@ const int N_RUNS = 5;
 const int N_ITERATIONS = 15;
 const string FILE_PREFIX = "file";
 const string FILE_SUFFIX = ".txt";
-const string FILE_DIRECTORY = "FS/temp/";
+const string FILE_DIRECTORY = "Filesystem/temp/";
 int n_processes;
 
 // Returns block size
@@ -94,6 +94,17 @@ double start_file_reading()
     // 546 for 64 MB file and 4096B block size
     int read_blocks = n_blocks / 30; // read a fraction of total blocks
     //cout << "Read_blocks " << read_blocks << endl;
+    // disable cache
+    // https://stackoverflow.com/questions/6818606/how-to-programmatically-clear-the-filesystem-memory-cache-in-c-on-a-linux-syst
+    sync();
+    char const *data = "3";
+    int ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    if (write(ft, data, sizeof(char)) == -1)
+    {
+        cout << "Error in writing to drop_caches" << endl;
+        exit(1);
+    }
+    close(ft);
     for (int i = 0; i < N_ITERATIONS; i++)
     {
         // DIRECT IO
