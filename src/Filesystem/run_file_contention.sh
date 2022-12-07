@@ -10,4 +10,3 @@ do
     make -s N_PROCESSES=$i fileContention
     echo $'\n'
 done
-rm -rf Filesystem/temp
