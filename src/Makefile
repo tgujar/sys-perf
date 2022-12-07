@@ -64,7 +64,7 @@ remote_fileReadTime:
 	bash Filesystem/remote_createFile.sh
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/remote_fileReadTime_seq Filesystem/remote_readtime_sequential.cpp ${INCL_CPP}
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/remote_fileReadTime_rand Filesystem/remote_readtime_random.cpp ${INCL_CPP}
-	./${OUTDIR}/remote_fileReadTime_seq
-	./${OUTDIR}/remote_fileReadTime_rand
+	sudo ./${OUTDIR}/remote_fileReadTime_seq
+	sudo ./${OUTDIR}/remote_fileReadTime_rand
 	rm Filesystem/temp/*.txt
 	sudo umount Filesystem/temp

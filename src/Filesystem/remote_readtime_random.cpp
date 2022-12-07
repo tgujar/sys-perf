@@ -18,7 +18,7 @@ int fileNum = 0;
 
 using namespace std;
 
-double rand_read_time_chrono_innerloop() {
+double rand_read_time_rtdsc_innerloop() {
     int blocksize = 4*1024;
     int numOfBlocksinMB = (1024*1024)/(4*1024);
 
@@ -27,10 +27,12 @@ double rand_read_time_chrono_innerloop() {
 
     sync();
     ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
-    write(ft, data, sizeof(char));
+    if (write(ft, data, sizeof(char)) == -1) {
+        cout << "Error in writing to drop_caches" << endl;
+        exit(1);
+    }
     close(ft);
-
-    int fd = open(filenames[fileNum], O_RDONLY | O_DIRECT);
+    int fd = open(filenames[fileNum], O_RDONLY);
     int sizeinMB = filesizes[fileNum];
     
     if (fd < 0) 
@@ -40,43 +42,7 @@ double rand_read_time_chrono_innerloop() {
     }
 
     void* bf = malloc(blocksize);
-    const int iter = 10;
-    long array[iter];
-    const int numOfBlocks = sizeinMB * numOfBlocksinMB;
-    time_t t;
-    srand((unsigned) time(&t));
-    for(int i=0; i < iter; i++)
-    {
-        array[i] = rand() %numOfBlocks ;
-        array[i] = array[i]*blocksize;
-    }
-    off_t offset;
-    auto start = chrono::steady_clock::now();
-    for(ssize_t i = iter; i > 0; i--) {
-        offset = lseek(fd, array[i], SEEK_SET);
-        read(fd, bf, blocksize);
-    }
-    auto end = chrono::steady_clock::now();
-    free(bf);
-    close(fd);
-    return double(chrono::duration_cast<chrono::microseconds>(end - start).count()) / iter;
-}
-
-double rand_read_time_rtdsc_innerloop() {
-    int blocksize = 4*1024;
-    int numOfBlocksinMB = (1024*1024)/(4*1024);
-
-    int fd = open(filenames[fileNum], O_RDONLY | O_DIRECT);
-    int sizeinMB = filesizes[fileNum];
-    
-    if (fd < 0) 
-    { 
-        perror("File not read"); 
-        exit(1); 
-    }
-
-    void* bf = malloc(blocksize);
-    const int iter = 10;
+    const int iter = 1000;
     long array[iter];
     const int numOfBlocks = sizeinMB * numOfBlocksinMB;
     time_t t1;
@@ -105,9 +71,6 @@ int main() {
         cout<<"Size of the file:"<<filesizes[i]<<endl;
         Stats<double> s(10), t(10);
         use_cores(vector<int> {0});
-        s.run_func(rand_read_time_chrono_innerloop);
-        cout << "Mean (chrono): "<< s.mean() << " us"<< endl;
-        cout << "Standard deviation (chrono): "<< s.std_dev() << " us"<< endl;
         t.run_func(rand_read_time_rtdsc_innerloop);
         cout << "Mean (rtdsc): "<< t.mean() << " us" << endl;
         cout << "Standard deviation (rtdsc): "<< t.std_dev() << " us"<< endl;
