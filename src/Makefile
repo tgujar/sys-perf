@@ -94,7 +94,7 @@ remote_fileReadTime:
 	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/remote_fileReadTime_rand Filesystem/remote_readtime_random.cpp ${INCL_CPP}
 	sudo ./${OUTDIR}/remote_fileReadTime_seq
 	sudo ./${OUTDIR}/remote_fileReadTime_rand
-	rm Filesystem/temp/*.txt
+	rm Filesystem/temp/f*.txt
 	sudo umount Filesystem/temp
 
 server:

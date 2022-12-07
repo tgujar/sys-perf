@@ -96,14 +96,14 @@ double start_file_reading()
     //cout << "Read_blocks " << read_blocks << endl;
     // disable cache
     // https://stackoverflow.com/questions/6818606/how-to-programmatically-clear-the-filesystem-memory-cache-in-c-on-a-linux-syst
-    sync();
-    char const *data = "3";
-    int ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
-    if (write(ft, data, sizeof(char)) == -1)
-    {
-        cout << "Error in writing to drop_caches" << endl;
-        exit(1);
-    }
+    // sync();
+    // char const *data = "3";
+    // int ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    // if (write(ft, data, sizeof(char)) == -1)
+    // {
+    //     cout << "Error in writing to drop_caches" << endl;
+    //     exit(1);
+    // }
     close(ft);
     for (int i = 0; i < N_ITERATIONS; i++)
     {

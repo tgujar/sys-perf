@@ -97,7 +97,7 @@ double total_pass() {
 int main() {
     vector<int> pipe_size {2, 4, 8, 16, 32};
     vector<int> footprint_size {0, 2048/4, 4096/4, 8192/4, 16384/4, 32768/4, 65536/4, 131072/4, 589824/4}; // {0B, 2KB, 4KB, 8KB, 16KB, 32KB, 64KB, 128KB}
-    csvfile out("../data/ctxswitch.csv");
+    csvfile out("../data/CPU/ctxswitch.csv");
     out << "No. of pipes" << "Footprint size(KB)" << "Mean overhead (us)" << "Mean total (us)" << "Mean ctx switch (us)" << "Std dev (us)" << endrow; 
     use_cores(vector<int> {0});
 

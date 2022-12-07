@@ -15,8 +15,8 @@ using namespace std;
 char *TRANSMIT_STR;
 #define MAXSIZE MESSAGE_SIZE + 1 // we transmit 256 bytes + 1 byte for the null terminator
 
-#define REQUESTS 1
-#define ITERATIONS 10
+#define REQUESTS 5
+#define ITERATIONS 5
 //1,048,576
 //212992
 void make_transmit_str() {
