@@ -50,7 +50,7 @@ int get_file_size(string file_name)
     }
     fseek(fp, 0L, SEEK_END);
     int sz = ftell(fp);
-    //cout << "File name " << file_name << " file size " << sz << endl;
+    // cout << "File name " << file_name << " file size " << sz << endl;
     fclose(fp);
     return sz;
 }
@@ -58,19 +58,19 @@ int get_file_size(string file_name)
 // Creates n_processes
 int create_processes(int n_processes)
 {
-    //cout << "Start Create process pid " << getpid() << endl;
+    // cout << "Start Create process pid " << getpid() << endl;
     pid_t pid;
     for (int i = 0; i < n_processes; i++)
     {
         pid = fork();
         if (pid == 0)
         {
-            //cout << "Inside Child File idx " << i << endl;
+            // cout << "Inside Child File idx " << i << endl;
             return i; // child process
         }
         else if (pid < 0)
         {
-            //cout << "Fork failed" << endl;
+            // cout << "Fork failed" << endl;
         }
     }
 }
@@ -78,22 +78,33 @@ int create_processes(int n_processes)
 // Returns the time to read a block in micro seconds
 double start_file_reading()
 {
-    //cout << "Start file reading pid " << getpid() << endl;
+    // cout << "Start file reading pid " << getpid() << endl;
     int file_idx = -1;
     int block_size = get_fs_block_size();
-    //cout << "Block size " << block_size << endl;
+    // cout << "Block size " << block_size << endl;
     file_idx = create_processes(n_processes);
-    //cout << "Finish create process pid " << getpid() << endl;
+    // cout << "Finish create process pid " << getpid() << endl;
     string file_name = FILE_PREFIX + to_string(file_idx) + FILE_SUFFIX;
     string file_path = FILE_DIRECTORY + file_name;
-    //cout << "File name " << file_name << endl;
+    // cout << "File name " << file_name << endl;
     Timer t;
     double total_time = 0;
     int file_size = get_file_size(file_name);
     int n_blocks = file_size / block_size;
     // 546 for 64 MB file and 4096B block size
     int read_blocks = n_blocks / 30; // read a fraction of total blocks
-    //cout << "Read_blocks " << read_blocks << endl;
+    // cout << "Read_blocks " << read_blocks << endl;
+    // disable cache
+    // https://stackoverflow.com/questions/6818606/how-to-programmatically-clear-the-filesystem-memory-cache-in-c-on-a-linux-syst
+    sync();
+    char const *data = "3";
+    int ft = open("/proc/sys/vm/drop_caches", O_WRONLY);
+    if (write(ft, data, sizeof(char)) == -1)
+    {
+        cout << "Error in writing to drop_caches" << endl;
+        exit(1);
+    }
+    close(ft);
     for (int i = 0; i < N_ITERATIONS; i++)
     {
         // DIRECT IO
@@ -114,7 +125,7 @@ double start_file_reading()
         {
             cerr << "File open failed" << endl;
         }
-        // POSIX_FADV_DONTNEED attempts to free cached pages associated with the specified region 
+        // POSIX_FADV_DONTNEED attempts to free cached pages associated with the specified region
         if (posix_fadvise(fd, 0, 0, POSIX_FADV_DONTNEED) < 0)
         {
             cerr << "Setting POSIX flag failed" << endl;
@@ -136,7 +147,7 @@ double start_file_reading()
         }
         // end timer
     }
-    //cout << "Process " << getpid() << " ended in " << total_time / N_ITERATIONS << " micro seconds" << endl;
+    // cout << "Process " << getpid() << " ended in " << total_time / N_ITERATIONS << " micro seconds" << endl;
     return total_time / (N_ITERATIONS * read_blocks);
 }
 
@@ -145,17 +156,18 @@ int main(int argc, char *argv[])
     int status = 0;
     pid_t wpid;
     n_processes = stoi(argv[1]);
-    //cout << "Number of processes " << n_processes << endl;
+    // cout << "Number of processes " << n_processes << endl;
     pid_t parent_pid = getpid();
-    //cout << "Parent pid " << parent_pid << endl;
+    // cout << "Parent pid " << parent_pid << endl;
     Stats<double> s(N_RUNS);
     if (getpid() == parent_pid)
     {
-        //cout << "Pids " << parent_pid << " " << getpid() << endl;
+        // cout << "Pids " << parent_pid << " " << getpid() << endl;
         s.run_func(start_file_reading);
     }
     // wait for child processes to terminate
-    while ((wait(NULL)) > 0);
+    while ((wait(NULL)) > 0)
+        ;
     if (getpid() == parent_pid)
     {
         cout << "Mean : " << s.mean() << " micro seconds" << endl;

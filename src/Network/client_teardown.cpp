@@ -14,7 +14,7 @@
 #include <arpa/inet.h>
 using namespace std;
 
-const int N_RUNS = 100;
+const int N_RUNS = 1;
 
 // Server hostent struct
 struct hostent *server;
@@ -43,6 +43,7 @@ double get_teardown_overhead_time()
     }
     // cout<<"Connected to server "<< inet_ntoa(serv_addr.sin_addr)<< endl;
     t.begin(); // start timer
+    //shutdown(sock_fd, SHUT_RDWR);
     close(sock_fd);
     t.end(); // end timer
     return t.time_diff_micro();

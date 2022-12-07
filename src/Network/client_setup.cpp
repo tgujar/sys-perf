@@ -38,10 +38,11 @@ double get_setup_overhead_time()
     bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
     Timer t;
     t.begin(); // start timer
-    if (connect(sock_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
-    {
-        perror("Error connecting\n");
-    }
+    // if (connect(sock_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+    // {
+    //     perror("Error connecting\n");
+    // }
+    connect(sock_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     t.end(); // end timer
     // cout<<"Connected to server "<< inet_ntoa(serv_addr.sin_addr)<< endl;
     close(sock_fd);
