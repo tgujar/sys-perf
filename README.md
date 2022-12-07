@@ -13,8 +13,8 @@ Experiments to characterize and understand a system's performance.
 - Task creation time: 
     1. Time to create a process: `make createProcess` 
     2. Time to create a thread: `make createThread`
-- Context switch time(process switch): `make ctxswitch`. The data is output in in `data/CPU/ctxswitch.csv`.
-- Context switch time(kenel thread switch): `make ctxswitchkernel`. The data is output in in `data/CPU/ctxswitchkernel.csv`.
+- Context switch time(process switch): `make ctxswitch`. The data is output in `data/CPU/ctxswitch.csv`.
+- Context switch time(kenel thread switch): `make ctxswitchkernel`. The data is output in `data/CPU/ctxswitchkernel.csv`.
 
 ### Memory
 - RAM access time: `make ramAccessTime`
