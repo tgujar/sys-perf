@@ -1,0 +1,7 @@
+g++ -g -I ../utils -DCPU_FREQ=2700  -o ../build/client_teardown Network/client_teardown.cpp ../utils/timer.cpp ../utils/stats.cpp
+./../build/client_teardown localhost 8080
+Server 0x7fe94d9b4a40 Port 8080
+Mean : 8.87561 micro seconds
+Variance : 2.82018 micro seconds
+Median : 8.08778 micro seconds
+Std dev : 1.67934 micro seconds

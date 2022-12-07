@@ -1,0 +1,6 @@
+./../build/client_teardown "192.168.1.245" 8070
+Server 0x7f6efaca3a40 Port 8070
+Mean : 31.9125 micro seconds
+Variance : 4.3627 micro seconds
+Median : 30.8637 micro seconds
+Std dev : 2.08871 micro seconds

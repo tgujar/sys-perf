@@ -37,7 +37,7 @@ createThread:
 
 # Memory OPS
 ramAccessTime:
-	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime1.cpp ${INCL_CPP}
+	g++ -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/ramAccessTime Memory/ramAccessTime.cpp ${INCL_CPP}
 	./${OUTDIR}/ramAccessTime
   
 readBW:
@@ -90,6 +90,36 @@ remote_fileReadTime:
 	sudo ./${OUTDIR}/remote_fileReadTime_rand
 	rm Filesystem/temp/*.txt
 	sudo umount Filesystem/temp
+
+server:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/server Network/server.cpp ${INCL_CPP}
+	./${OUTDIR}/server 8080
+
+loopback_client_setup:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_setup Network/client_setup.cpp ${INCL_CPP}
+	./${OUTDIR}/client_setup localhost 8080
+
+loopback_client_teardown:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_teardown Network/client_teardown.cpp ${INCL_CPP}
+	./${OUTDIR}/client_teardown localhost 8080
+
+remote_client_setup:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_setup Network/client_setup.cpp ${INCL_CPP}
+	./${OUTDIR}/client_setup "192.168.1.245" 8070
+
+remote_client_teardown:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/client_teardown Network/client_teardown.cpp ${INCL_CPP}
+	./${OUTDIR}/client_teardown "192.168.1.245" 8070
+
+
+# File System
+
+fileContention:
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention FS/fileContention.cpp ${INCL_CPP}
+	./${OUTDIR}/fileContention $(N_PROCESSES)
+
+fileContentionCompleteRun:
+	bash FS/run_file_contention.sh
 
 clean:
 	rm -f ./${OUTDIR}/*

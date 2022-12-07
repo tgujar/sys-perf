@@ -1,0 +1,7 @@
+./../build/client_setup localhost 8080
+0x7f6a1ace6a40
+Server 0x7f6a1ace6a40 Port 8080
+Mean : 24.0322 micro seconds
+Variance : 7.59207 micro seconds
+Median : 21.8778 micro seconds
+Std dev : 2.75537 micro seconds
