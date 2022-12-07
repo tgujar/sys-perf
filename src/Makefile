@@ -115,7 +115,7 @@ remote_client_teardown:
 # File System
 
 fileContention:
-	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention FS/fileContention.cpp ${INCL_CPP}
+	g++ -g -I ../utils -DCPU_FREQ=2700  -o ${OUTDIR}/fileContention Filesystem/fileContention.cpp ${INCL_CPP}
 	./${OUTDIR}/fileContention $(N_PROCESSES)
 
 fileContentionCompleteRun:
