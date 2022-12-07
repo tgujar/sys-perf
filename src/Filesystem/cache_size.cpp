@@ -119,7 +119,7 @@ int main() {
         fileNum = i;
         cout<<"Size of the file:"<<filesizes[i]<<endl;
         readSeq();
-        Stats<double> s(10), t(10);
+        Stats<double> s(50), t(50);
         use_cores(vector<int> {0});
         t.run_func(rand_read_time_rtdsc_innerloop);
         cout << "Mean (rtdsc): "<< t.mean() << " us" << endl;

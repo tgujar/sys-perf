@@ -42,7 +42,7 @@ double rand_read_time_rtdsc_innerloop() {
     }
 
     void* bf = malloc(blocksize);
-    const int iter = 100;
+    const int iter = 1000;
     long array[iter];
     const int numOfBlocks = sizeinMB * numOfBlocksinMB;
     time_t t1;
@@ -69,7 +69,7 @@ int main() {
     for (int i = 0; i < 11; i++) {
         fileNum = i;
         cout<<"Size of the file:"<<filesizes[i]<<endl;
-        Stats<double> s(5), t(5);
+        Stats<double> s(50), t(50);
         use_cores(vector<int> {0});
         t.run_func(rand_read_time_rtdsc_innerloop);
         cout << "Mean (rtdsc): "<< t.mean() << " us" << endl;
