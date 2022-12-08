@@ -104,7 +104,7 @@ double start_file_reading()
     //     cout << "Error in writing to drop_caches" << endl;
     //     exit(1);
     // }
-    close(ft);
+    //close(ft);
     for (int i = 0; i < N_ITERATIONS; i++)
     {
         // DIRECT IO
